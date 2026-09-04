@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Nelly's Academy - Phonics, Curriculum & WAEC Prep</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .gradient-hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #4f46e5 100%);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .ad-banner {
+      background: linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px dashed #f59e0b;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-amber-400 text-slate-900 text-xs sm:text-sm font-semibold py-2 px-4 text-center flex flex-wrap items-center justify-center gap-2 shadow-sm">
+    <i class="fa-solid fa-graduation-cap text-base"></i>
+    <span>Welcome to Teacher Nelly's Academy!</span>
+    <a href="#waec-exam" class="underline hover:text-slate-950 font-extrabold ml-1">Take WAEC Practice Exam</a>
+  </div>
+
+  <!-- Optional Monetization Top Ad Slot -->
+  <div id="topAdSlot" class="hidden max-w-7xl mx-auto w-full px-4 pt-3">
+    <div class="ad-banner rounded-xl p-2.5 text-center flex items-center justify-between text-xs text-amber-900">
+      <span class="font-bold"><i class="fa-solid fa-rectangle-ad text-amber-600 mr-1.5"></i> ADVERTISEMENT: Boost Your Child's Brain Power with Nelly Reading Kits!</span>
+      <button onclick="closeAd('topAdSlot')" class="text-amber-800 hover:text-amber-950 font-bold px-2 py-0.5"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="resetClassFilter()">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 text-xl font-black">
+          N
+        </div>
+        <div>
+          <span class="text-lg font-extrabold text-slate-900 tracking-tight block leading-none">Teacher Nelly's</span>
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Academy</span>
+        </div>
+      </div>
+
+      <nav class="hidden lg:flex items-center space-x-5 text-xs lg:text-sm font-semibold text-slate-600">
+        <a href="#home" class="hover:text-blue-600 transition">Home</a>
+        <a href="#curriculum" class="hover:text-blue-600 transition">Learn</a>
+        <a href="#practice" class="hover:text-blue-600 transition">Practice</a>
+        <a href="#games-arena" class="hover:text-purple-600 transition flex items-center gap-1 text-purple-600 font-bold">
+          <i class="fa-solid fa-gamepad"></i> Games
+        </a>
+        <a href="#waec-exam" class="hover:text-amber-600 transition flex items-center gap-1 text-amber-600 font-bold">
+          <i class="fa-solid fa-file-signature"></i> Exams
+        </a>
+        <a href="#parent-hub" class="hover:text-blue-600 transition">Parent</a>
+      </nav>
+
+      <div class="flex items-center space-x-2 sm:space-x-3">
+<!-- Free Registration Button -->
+        <button onclick="openParentModal()" id="parentModeBtn" class="inline-flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs px-3 py-2 rounded-xl font-bold transition border border-blue-200">
+          <i class="fa-solid fa-user-plus text-blue-600"></i>
+          <span id="parentModeLabel" class="hidden sm:inline">Free Registration</span>
+        </button>
+
+        <!-- Unlock Code Button -->
+        <button onclick="openUnlockModal()" class="inline-flex items-center gap-1 bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs px-3 py-2 rounded-xl font-bold transition border border-amber-300">
+          <i class="fa-solid fa-key text-amber-600"></i>
+          <span class="hidden sm:inline">Enter Code</span>
+        </button>
+
+        <button onclick="openCheckoutModal('Full Premium VIP Access')" class="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white text-xs px-3.5 py-2 rounded-xl font-extrabold shadow-md hover:shadow-lg transition">
+          <i class="fa-solid fa-crown"></i>
+          <span class="hidden xs:inline">VIP Access</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="gradient-hero text-white py-12 lg:py-16 relative overflow-hidden">
+    <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 bg-white/10 backdrop-blur rounded-full text-xs font-bold text-amber-300 uppercase tracking-wider mb-4 border border-white/20">
+            <i class="fa-solid fa-star"></i> Excellence in Phonics, Primary & Secondary WAEC Prep
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+            Master Every Subject from <span class="text-amber-300">Pre-Nursery</span> to <span class="text-amber-300">SSS 3</span>
+          </h1>
+          <p class="text-blue-100 text-sm sm:text-base mb-6 leading-relaxed font-medium max-w-2xl">
+            Register your child for free to unlock their class curriculum! Premium courses are locked until a verified VIP unlock code is activated.
+          </p>
+
+          <div class="flex flex-wrap gap-3 items-center">
+            <button onclick="openParentModal()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-5 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs sm:text-sm">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Register Child Free</span>
+            </button>
+            <a href="#phonics" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-5 py-3 rounded-xl transition flex items-center gap-2 text-xs sm:text-sm shadow-md">
+              <i class="fa-solid fa-font"></i>
+              <span>Alphabet A–Z Board</span>
+            </a>
+            <a href="#colors-shapes-diagrams" class="bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold px-5 py-3 rounded-xl transition flex items-center gap-2 text-xs sm:text-sm shadow-md">
+              <i class="fa-solid fa-shapes"></i>
+              <span>2D Colors & Shapes</span>
+            </a>
+            <a href="#waec-exam" class="bg-white/10 hover:bg-white/20 text-white font-extrabold px-5 py-3 rounded-xl border border-white/30 transition flex items-center gap-2 text-xs sm:text-sm">
+              <i class="fa-solid fa-pen-clip text-amber-300"></i>
+              <span>Take WAEC Exam</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Status Card -->
+        <div class="lg:col-span-4 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 text-white shadow-xl">
+          <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-3">
+            <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">Parent Access Status</span>
+            <span id="vipStatusBadge" class="bg-amber-400 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Free Mode</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between items-center">
+              <span class="text-blue-100">Registered Students:</span>
+              <span id="registeredKidsCount" class="font-bold text-white">0 Registered</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-blue-100">Class Visibility:</span>
+              <span id="classVisibilityText" class="font-bold text-emerald-300">Unlocked & Active</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-blue-100">Premium VIP Access:</span>
+              <span id="premiumStatusText" class="font-bold text-amber-300">Standard Account</span>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/20 flex gap-2">
+            <button onclick="openParentModal()" class="flex-1 bg-white text-slate-900 font-extrabold py-2 rounded-lg text-xs hover:bg-slate-100 transition text-center">
+              Register Student
+            </button>
+            <button onclick="openParentAccessModal()" class="flex-1 bg-blue-500/20 border border-white/20 text-white font-extrabold py-2 rounded-lg text-xs hover:bg-blue-500/30 transition text-center">
+              Parent Access
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container with Organized Sections -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-20">
+
+    <!-- SECTION 1: PHONICS A-Z BOARD -->
+    <section id="phonics" class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-indigo-800">
+      <div class="relative z-10">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <span class="bg-amber-400 text-slate-950 font-black px-3 py-1 rounded-full text-xs uppercase shadow-sm">
+                🔤 Restored Phonics Board
+              </span>
+              <span class="text-emerald-400 text-xs font-bold"><i class="fa-solid fa-volume-high"></i> Voice & Words Active</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">A–Z Alphabet & Meaning Board</h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">
+              Click any letter below to hear Teacher Nelly speak, see the full word it stands for, and view its picture & sample sentence!
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="playFullAlphabetSong()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+              <i class="fa-solid fa-music"></i> Play A–Z Audio Tour
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Letter Preview Spotlight Box -->
+        <div id="alphabetSpotlight" class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-5 mb-6 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+          <div id="spotlightEmoji" class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-200 text-slate-950 text-6xl flex items-center justify-center font-black shadow-lg shrink-0">
+            🍎
+          </div>
+          <div class="space-y-1 flex-grow">
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+              <span id="spotlightLetter" class="text-4xl font-black text-amber-300">Aa</span>
+              <span id="spotlightWord" class="text-2xl font-extrabold text-white">Stands for: APPLE</span>
+              <button onclick="speakAlphabetItem()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-lg flex items-center gap-1">
+                <i class="fa-solid fa-volume-high"></i> Listen Pronunciation
+              </button>
+            </div>
+            <p id="spotlightPhonicsSound" class="text-emerald-300 text-xs font-semibold">Phonics Sound: "/æ/ as in Apple"</p>
+            <p id="spotlightSentence" class="text-slate-200 text-xs sm:text-sm italic">"An apple a day keeps the doctor away!"</p>
+          </div>
+        </div>
+
+        <!-- 26 Letter Grid -->
+        <div id="phonicsGrid" class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-3">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 2D VISUAL COLORS & SHAPES DIAGRAMS -->
+    <section id="colors-shapes-diagrams" class="bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 text-white rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-indigo-900">
+      <div class="relative z-10 space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <span class="bg-indigo-500 text-white font-black px-3 py-1 rounded-full text-xs uppercase shadow-sm">
+                🎨 Visual Learning Diagrams
+              </span>
+              <span class="text-amber-400 text-xs font-bold"><i class="fa-solid fa-palette"></i> Pre-School & Basic Explorer</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">2D Visual Colors & Geometry Shapes Diagrams</h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">
+              Interactive visual diagrams for nursery and primary students. Click any color swatch or 2D geometric shape to inspect properties and hear audio descriptions!
+            </p>
+          </div>
+          <button onclick="speakAllDiagrams()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+            <i class="fa-solid fa-volume-high"></i> Read Color & Shape Guide
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- PART A: 2D COLORS PALETTE DIAGRAM -->
+          <div class="lg:col-span-6 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/20 pb-3">
+              <h3 class="text-lg font-extrabold text-amber-300 flex items-center gap-2">
+                <i class="fa-solid fa-droplet"></i> Primary & Secondary Colors Diagram
+              </h3>
+              <span class="text-xs text-slate-300 font-bold">Tap to Inspect</span>
+            </div>
+            
+            <div id="colorsDiagramGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div id="activeColorSpotlight" class="bg-slate-900/80 border border-white/20 rounded-xl p-4 text-xs space-y-1">
+              <span class="text-amber-400 font-bold uppercase tracking-wider block">Selected Color Property:</span>
+              <p id="colorSpotlightDesc" class="text-slate-200">Click any color tile above to view its educational details and real-world examples.</p>
+            </div>
+          </div>
+
+          <!-- PART B: 2D GEOMETRIC SHAPES DIAGRAM -->
+          <div class="lg:col-span-6 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/20 pb-3">
+              <h3 class="text-lg font-extrabold text-indigo-300 flex items-center gap-2">
+                <i class="fa-solid fa-shapes"></i> 2D Geometric Shapes Diagram
+              </h3>
+              <span class="text-xs text-slate-300 font-bold">Tap to Inspect</span>
+            </div>
+
+            <div id="shapesDiagramGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div id="activeShapeSpotlight" class="bg-slate-900/80 border border-white/20 rounded-xl p-4 text-xs space-y-1">
+              <span class="text-indigo-400 font-bold uppercase tracking-wider block">Selected 2D Shape Property:</span>
+              <p id="shapeSpotlightDesc" class="text-slate-200">Click any 2D shape tile above to examine its sides, angles, and formula properties.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ACADEMIC CURRICULUM -->
+    <section id="curriculum">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Academic Curriculum & Topics</h2>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-check-circle"></i> Open & VIP Access</span>
+          </div>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">Structured learning modules across English, Science, Grammar, Sentences, Prepositions & Concord. Premium lessons require payment verification or VIP code.</p>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search topic (e.g., Concord, Prepositions)..." class="w-full pl-10 pr-4 py-2 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+        </div>
+      </div>
+
+      <!-- Class Level Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 custom-scrollbar" id="levelTabs">
+        <!-- Dynamic Tabs Rendered via JS -->
+      </div>
+
+      <!-- Subject Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 mb-6" id="subjectFilterPills">
+        <span class="text-xs font-bold text-slate-500 mr-2"><i class="fa-solid fa-filter"></i> Filter Subject:</span>
+        <button onclick="filterSubject('All')" id="subBtn-All" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-900 text-white shadow-sm">All Subjects</button>
+        <button onclick="filterSubject('English')" id="subBtn-English" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">English & Grammar</button>
+        <button onclick="filterSubject('Mathematics')" id="subBtn-Mathematics" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Mathematics</button>
+        <button onclick="filterSubject('Sciences')" id="subBtn-Sciences" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Sciences</button>
+        <button onclick="filterSubject('WAEC Prep')" id="subBtn-WAEC Prep" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">WAEC & NECO</button>
+        <button onclick="filterSubject('ICT & Tech')" id="subBtn-ICT & Tech" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">ICT & Computing</button>
+      </div>
+
+      <!-- Curriculum Cards Grid -->
+      <div id="curriculumContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic Cards Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- PRACTICE HUB -->
+    <section id="practice" class="bg-blue-50 rounded-3xl p-6 sm:p-8 border border-blue-200 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-blue-700 bg-white px-3 py-1 rounded-full uppercase tracking-wider">✏️ Practice Hub</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Learn it. Practise it. Master it.</h2>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1 max-w-2xl">Every lesson includes a practice question with instant feedback. Your parent access determines which class curriculum you can open.</p>
+        </div>
+        <a href="#curriculum" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-5 py-3 rounded-xl text-xs sm:text-sm shadow">
+          <i class="fa-solid fa-book-open"></i> Go to My Lessons
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WAEC & NECO EXAMINATION PORTAL -->
+    <section id="waec-exam" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl relative overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-6">
+        <div>
+          <span class="px-3 py-1 bg-amber-400 text-slate-950 font-black rounded-full text-xs uppercase shadow-sm">
+            🏆 WAEC & NECO-Style Practice Portal
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">100-Question Comprehensive Practice Exam</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Mathematics (20) • English Language (20) • Chemistry (15) • Physics (15) • Biology (15) • General Studies (15)
+          </p>
+        </div>
+
+        <!-- Exam Controls Header -->
+        <div id="examHeaderStats" class="flex flex-wrap items-center gap-3">
+          <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-center">
+            <span class="text-[10px] text-slate-400 font-bold block uppercase">Timer</span>
+            <span id="examTimerDisplay" class="text-lg font-black text-amber-400 font-mono">120:00</span>
+          </div>
+          <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-center">
+            <span class="text-[10px] text-slate-400 font-bold block uppercase">Answered</span>
+            <span id="examProgressCount" class="text-lg font-black text-emerald-400 font-mono">0 / 100</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start Exam Screen -->
+      <div id="examStartScreen" class="py-8 text-center max-w-2xl mx-auto space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-3xl mx-auto shadow-xl">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-white">Ready to test your WAEC/NECO Readiness?</h3>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          Take a 100-question WAEC/NECO-style practice test. Explanations are shown after submission so the exam behaves like a real practice session.
+        </p>
+
+        <button onclick="startWAECExam()" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-2xl shadow-xl transition transform active:scale-95 flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-play"></i> Start 100-Question Exam Now
+        </button>
+      </div>
+
+      <!-- Exam Active UI -->
+      <div id="examActiveUI" class="hidden space-y-6">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+            <span id="currentQuestionSubjectTag" class="text-amber-400 uppercase tracking-wider font-extrabold">Subject: Mathematics</span>
+            <span id="examOverallPercentage">0% Completed</span>
+          </div>
+          <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+            <div id="examProgressBar" class="h-full bg-amber-400 w-0 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- Current Question Box -->
+        <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 sm:p-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <span id="questionNumberBadge" class="bg-blue-600/30 text-blue-300 border border-blue-500/40 text-xs font-bold px-3 py-1 rounded-lg">Question 1 of 100</span>
+            <button onclick="toggleRationaleExplanation()" class="text-xs text-amber-400 hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-lightbulb"></i> Instant Rationale
+            </button>
+          </div>
+
+          <p id="examQuestionText" class="text-base sm:text-lg font-bold text-white leading-relaxed"></p>
+
+          <div id="examOptionsContainer" class="space-y-3"></div>
+
+          <div id="rationaleBox" class="hidden bg-slate-900 border border-amber-400/30 rounded-xl p-4 text-xs sm:text-sm text-slate-300 space-y-2">
+            <div class="flex items-center gap-2 text-amber-400 font-bold uppercase tracking-wider">
+              <i class="fa-solid fa-circle-info"></i> Rationale Explanation
+            </div>
+            <p id="rationaleText" class="leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Nav Controls -->
+        <div class="flex items-center justify-between">
+          <button onclick="navigateExam(-1)" id="btnPrevExam" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl border border-slate-700 transition">
+            <i class="fa-solid fa-arrow-left mr-1"></i> Previous
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <button onclick="submitExamEarlyConfirm()" class="bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-bold px-4 py-2.5 rounded-xl border border-red-500/40 transition">
+              Submit Early
+            </button>
+            <button onclick="navigateExam(1)" id="btnNextExam" class="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold px-6 py-2.5 rounded-xl shadow-lg transition">
+              Next Question <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Results & Grade Report Screen -->
+      <div id="examResultsScreen" class="hidden py-6 space-y-6">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 text-center space-y-4">
+          <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-bold uppercase">Exam Completed</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">WAEC & NECO Score Report</h3>
+          
+          <div class="flex justify-center items-center gap-6 my-4">
+            <div class="text-center">
+              <span id="finalScoreDisplay" class="text-4xl font-black text-amber-400 font-mono">0 / 100</span>
+              <span class="block text-xs text-slate-400 font-bold mt-1">Score</span>
+            </div>
+            <div class="w-px h-12 bg-slate-700"></div>
+            <div class="text-center">
+              <span id="finalPercentageDisplay" class="text-4xl font-black text-emerald-400 font-mono">0%</span>
+              <span class="block text-xs text-slate-400 font-bold mt-1">Percentage</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <button onclick="resetWAECExam()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-6 py-3 rounded-xl text-xs sm:text-sm transition">
+            Retake Exam
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: GAMES ARENA -->
+    <section id="games-arena" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-full uppercase tracking-wider">
+            🎮 Interactive Games Arena
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Educational Arcade</h2>
+          <p class="text-slate-500 text-xs sm:text-sm">Boost mental speed, phonics recognition, and science memory through game play!</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="switchGame('math')" id="btnGameMath" class="px-3.5 py-2 rounded-xl font-bold text-xs bg-purple-600 text-white shadow-sm transition">
+            <i class="fa-solid fa-bolt"></i> Math Blast
+          </button>
+          <button onclick="switchGame('phonics')" id="btnGamePhonics" class="px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+            <i class="fa-solid fa-spell-check"></i> Phonics Match
+          </button>
+          <button onclick="switchGame('memory')" id="btnGameMemory" class="px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+            <i class="fa-solid fa-brain"></i> Science Memory
+          </button>
+          <button onclick="switchGame('scramble')" id="btnGameScramble" class="px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+            <i class="fa-solid fa-shuffle"></i> Word Scramble
+          </button>
+        </div>
+      </div>
+
+      <!-- GAME 0: WORD SCRAMBLE -->
+      <div id="gameScrambleContainer" class="hidden bg-gradient-to-br from-amber-900 to-orange-950 text-white rounded-2xl p-6 relative overflow-hidden">
+        <div class="flex items-center justify-between border-b border-amber-800 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-amber-300">🔤 Word Scramble Challenge</h3>
+            <p class="text-xs text-amber-200">The letters are mixed up. Tap them in the correct order to build the word.</p>
+          </div>
+          <div class="text-center font-mono">
+            <span class="text-[10px] text-amber-300 block uppercase">Score</span>
+            <span id="scrambleScore" class="text-2xl font-black text-amber-300">0</span>
+          </div>
+        </div>
+        <div class="py-5 text-center space-y-5">
+          <div class="text-xs uppercase tracking-wider font-bold text-amber-300">Picture clue</div>
+          <div id="scrambleEmoji" class="text-6xl">🍎</div>
+          <div id="scrambleWordSlots" class="flex flex-wrap justify-center gap-2 min-h-12"></div>
+          <div id="scrambleLetters" class="flex flex-wrap justify-center gap-2 max-w-xl mx-auto"></div>
+          <div class="flex justify-center gap-2">
+            <button onclick="undoScrambleLetter()" class="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-xs font-bold">Undo</button>
+            <button onclick="initWordScramble()" class="bg-amber-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold">New Word</button>
+          </div>
+          <p id="scrambleFeedback" class="h-6 text-xs font-bold"></p>
+        </div>
+      </div>
+
+      <!-- GAME 1: MATH SPEED BLAST -->
+      <div id="gameMathContainer" class="bg-gradient-to-br from-purple-900 to-indigo-950 text-white rounded-2xl p-6 relative overflow-hidden">
+        <div class="flex items-center justify-between border-b border-purple-800 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-amber-300">⚡ Math Speed Blast</h3>
+            <p class="text-xs text-purple-200">Rapid calculations in 30 seconds</p>
+          </div>
+          <div class="flex gap-4 font-mono">
+            <div class="text-center">
+              <span class="text-[10px] text-purple-300 block uppercase">Score</span>
+              <span id="mathGameScore" class="text-2xl font-black text-amber-300">0</span>
+            </div>
+            <div class="text-center">
+              <span class="text-[10px] text-purple-300 block uppercase">Timer</span>
+              <span id="mathGameTimer" class="text-2xl font-black text-emerald-400">30s</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="mathGameStart" class="py-8 text-center space-y-4">
+          <p class="text-sm text-purple-200 max-w-md mx-auto">Tap Start to begin your 30-second rapid math challenge!</p>
+          <button onclick="startMathGame()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-6 py-3 rounded-xl text-sm transition shadow-lg">
+            Start Speed Blast
+          </button>
+        </div>
+
+        <div id="mathGamePlay" class="hidden py-4 text-center space-y-6">
+          <div id="mathQuestionDisplay" class="text-4xl font-black text-white font-mono">7 + 5 = ?</div>
+          <div id="mathOptionsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-md mx-auto"></div>
+        </div>
+      </div>
+
+      <!-- GAME 2: PHONICS MATCH (FULLY FIXED & ROBUST) -->
+      <div id="gamePhonicsContainer" class="hidden bg-gradient-to-br from-blue-900 to-slate-900 text-white rounded-2xl p-6">
+        <div class="flex items-center justify-between border-b border-blue-800 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-amber-300">jl Phonics & Word Match Game</h3>
+            <p class="text-xs text-blue-200">Match the spoken phonetic sound or letter to the correct vocabulary card!</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="text-center font-mono">
+              <span class="text-[10px] text-blue-300 block uppercase">Score</span>
+              <span id="phonicsGameScore" class="text-2xl font-black text-amber-300">0</span>
+            </div>
+            <button onclick="initPhonicsGame()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+              New Round
+            </button>
+          </div>
+        </div>
+
+        <div id="phonicsGameArea" class="py-4 text-center space-y-6">
+          <div class="bg-white/10 border border-white/20 rounded-2xl p-5 max-w-lg mx-auto space-y-3">
+            <span class="text-xs font-bold text-amber-300 uppercase tracking-wider block">Target Phonics Sound / Letter:</span>
+            <div class="flex items-center justify-center gap-4">
+              <button onclick="speakPhonicsGamePrompt()" class="w-14 h-14 rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-2xl flex items-center justify-center shadow-lg transition transform hover:scale-105">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <span id="phonicsGamePromptLetter" class="text-4xl font-black text-white font-mono">Aa</span>
+            </div>
+            <p id="phonicsGamePromptDesc" class="text-xs text-emerald-300 font-medium">Listen to the prompt and select the matching picture card below!</p>
+          </div>
+
+          <div id="phonicsGameChoices" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto"></div>
+          <div id="phonicsGameFeedback" class="text-xs font-bold h-6"></div>
+        </div>
+      </div>
+
+      <!-- GAME 3: SCIENCE MEMORY (FULLY FIXED MATCHING GRID) -->
+      <div id="gameMemoryContainer" class="hidden bg-gradient-to-br from-emerald-950 to-slate-900 text-white rounded-2xl p-6">
+        <div class="flex items-center justify-between border-b border-emerald-800 pb-4 mb-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-emerald-400">🧠 Science Memory Match Game</h3>
+            <p class="text-xs text-emerald-200">Flip cards to match pairs of science concepts, plants, and chemical elements!</p>
+          </div>
+          <div class="flex items-center gap-4 font-mono">
+            <div class="text-center">
+              <span class="text-[10px] text-emerald-300 block uppercase">Flips</span>
+              <span id="memoryFlipsCount" class="text-xl font-black text-amber-300">0</span>
+            </div>
+            <div class="text-center">
+              <span class="text-[10px] text-emerald-300 block uppercase">Pairs</span>
+              <span id="memoryPairsCount" class="text-xl font-black text-emerald-400">0 / 6</span>
+            </div>
+            <button onclick="initScienceMemoryGame()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">
+              Restart Game
+            </button>
+          </div>
+        </div>
+        <div id="memoryGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-xl mx-auto py-4"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PARENT HUB -->
+    <section id="parent-hub" class="bg-gradient-to-br from-amber-50 to-orange-50/60 rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 space-y-4">
+          <span class="text-xs font-bold text-amber-800 bg-amber-200/80 px-3 py-1 rounded-full uppercase tracking-wider">
+            👨‍👩‍👧 Free Student & Child Registration
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Parent Hub & Directory</h2>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Register your children for <strong>100% Free Access</strong>! Once registered, their details are securely stored for Teacher Nelly's private dashboard.
+          </p>
+
+          <div class="bg-white p-4 rounded-2xl border border-amber-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-xs font-bold text-slate-700 uppercase">Private Student Registration</span>
+              <button onclick="openParentModal()" class="text-xs font-bold text-blue-600 hover:underline">+ Register Student (Free)</button>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Student names and phone numbers are private and are not displayed publicly. Registration records are available only to authorized academy administrators.</p>
+            <div class="flex items-center gap-2 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">
+              <i class="fa-solid fa-shield-halved"></i> Your child’s registration details are protected.
+            </div>
+          </div>
+        </div>
+
+        <!-- Parent Inquiry Form -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <h3 class="text-base font-bold text-slate-900 mb-4">Parent Inquiry & Tutoring Request</h3>
+          <form onsubmit="handleParentInquiry(event)" class="space-y-4 text-xs sm:text-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Parent's Full Name</label>
+                <input type="text" id="parentName" required placeholder="e.g., Mrs. Chioma Adeleke" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Phone / WhatsApp Number</label>
+                <input type="tel" id="parentPhone" required placeholder="e.g., 08012345678" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Student Class Level</label>
+                <select id="parentClassSelect" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="Pre-Nursery">Pre-Nursery (Ages 2-3)</option>
+                  <option value="Nursery 1–2">Nursery 1–2 (Ages 3-5)</option>
+                  <option value="Basic 1–6">Primary / Basic 1–6</option>
+                  <option value="JSS 1–3">Junior Secondary (JSS 1–3)</option>
+                  <option value="SSS 1–3">Senior Secondary (SSS 1–3)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Inquiry Category</label>
+                <select id="inquiryCategory" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="Personalized 1-on-1 Tutoring">Personalized 1-on-1 Tutoring</option>
+                  <option value="Child Progress Assessment">Child Progress Assessment</option>
+                  <option value="Payment & Subscription Code">Payment & Subscription Code</option>
+                  <option value="WAEC / NECO Exam Prep">WAEC / NECO Exam Prep</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Message or Question</label>
+              <textarea id="parentMessage" rows="3" required placeholder="How can Teacher Nelly assist your child?" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Submit Inquiry</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: VIP MONETIZATION PLANS -->
+    <section id="monetization" class="mb-10">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">Monetization & VIP Plans</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Affordable Premium Plans</h2>
+        <p class="text-slate-600 mt-2 text-xs sm:text-sm">Upgrade to VIP to access premium learning tracks and test modules!</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-8">
+        <!-- Termly Plan -->
+        <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 sm:p-8 shadow-sm hover:border-blue-500 transition relative flex flex-col">
+          <h3 class="text-xl font-bold text-slate-900">Termly VIP Subscription</h3>
+          <p class="text-slate-500 text-xs mt-1">Full access for 1 academic term</p>
+          <div class="my-6">
+            <span class="text-4xl font-extrabold text-slate-900">₦15,000</span>
+            <span class="text-slate-500 text-xs font-semibold"> / term</span>
+          </div>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Unlocks All Premium Curriculum Lessons</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Verified VIP Unlock Code</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Printable Progress Certificates</li>
+          </ul>
+          <button onclick="openCheckoutModal('Termly Plan (₦15,000)')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-xs sm:text-sm">
+            Subscribe Termly (₦15,000)
+          </button>
+        </div>
+
+        <!-- Annual Plan -->
+        <div class="bg-white rounded-2xl border-2 border-amber-400 p-6 sm:p-8 shadow-lg relative flex flex-col bg-gradient-to-b from-amber-50/50 to-white">
+          <div class="absolute -top-3.5 right-6 bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-3 py-1 rounded-full shadow">
+            Best Value
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">Annual Full VIP Pass</h3>
+          <p class="text-slate-500 text-xs mt-1">Complete 1-year access with maximum savings</p>
+          <div class="my-6">
+            <span class="text-4xl font-extrabold text-slate-900">₦35,000</span>
+            <span class="text-slate-500 text-xs font-semibold"> / year</span>
+          </div>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> All Termly VIP Features Included</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Unlimited WAEC 100-Question Simulations</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Priority 1-on-1 Parent Tutoring Support</li>
+          </ul>
+          <button onclick="openCheckoutModal('Annual Plan (₦35,000)')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-3 rounded-xl transition shadow-md text-xs sm:text-sm">
+            Get Annual VIP Pass (₦35,000)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODALS -->
+
+  <!-- Parent Registration Modal -->
+  <div id="parentModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900">Student Registration</h3>
+            <p class="text-[11px] text-slate-500">Register child to access class curriculum</p>
+          </div>
+        </div>
+        <button onclick="closeParentModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleRegisterChild(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Student / Child Full Name</label>
+          <input type="text" id="childNameInput" required placeholder="e.g., Daniel Adeleke" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Parent's Phone Number</label>
+          <input type="tel" id="childParentPhoneInput" required placeholder="e.g., 08012345678" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Select Class Level</label>
+          <select id="childClassInput" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="Pre-Nursery">Pre-Nursery (Ages 2-3)</option>
+            <option value="Nursery 1–2">Nursery 1–2 (Ages 3-5)</option>
+            <option value="Basic 1–6">Basic / Primary 1–6</option>
+            <option value="JSS 1–3">JSS 1–3 (Junior Secondary)</option>
+            <option value="SSS 1–3">SSS 1–3 (Senior Secondary)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2.5 rounded-xl transition shadow">
+          Register Student (Free)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Parent Class Access Modal -->
+  <div id="parentAccessModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900">Parent Class Access</h3>
+          <p class="text-[11px] text-slate-500">Enter the same details used when registering your child.</p>
+        </div>
+        <button onclick="closeParentAccessModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center text-xs"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="handleParentAccess(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Parent's Phone Number</label>
+          <input type="tel" id="parentAccessPhone" required placeholder="e.g., 08012345678" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Registered Child's Full Name</label>
+          <input type="text" id="parentAccessChildName" required placeholder="e.g., Daniel Adeleke" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-extrabold py-2.5 rounded-xl transition shadow">
+          View My Child's Class
+        </button>
+      </form>
+      <p class="text-[10px] text-slate-400">Only the class level(s) linked to your registered child/children will be shown. Games remain available to everyone.</p>
+    </div>
+  </div>
+
+  <!-- Unlock Code Modal -->
+  <div id="unlockModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center font-bold text-sm">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900">Enter VIP Unlock Code</h3>
+            <p class="text-[11px] text-slate-500">Unlock VIP features & certificates</p>
+          </div>
+        </div>
+        <button onclick="closeUnlockModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1 uppercase tracking-wider text-[10px]">VIP Verification Unlock Code</label>
+          <input type="text" id="unlockCodeInput" placeholder="e.g. NELLY2026-VIP" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 font-mono text-sm uppercase text-center">
+        </div>
+
+        <!-- HIDDEN FROM VISITORS: Demo codes are now concealed unless admin demo mode is active or user knows codes -->
+        <div id="visitorCodeHintBox" class="bg-blue-50 p-3 rounded-xl border border-blue-200 text-blue-900 text-[11px] space-y-1">
+          <p class="font-bold"><i class="fa-solid fa-info-circle mr-1"></i> VIP Note:</p>
+          <p>Enter your verified VIP code received from Teacher Nelly after payment confirmation.</p>
+        </div>
+
+        <button onclick="verifyUnlockCode()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-2.5 rounded-xl transition shadow">
+          Verify Unlock Code
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 relative space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900">First Bank Payment Checkout</h3>
+            <p id="checkoutPlanTitle" class="text-[11px] text-slate-500">Secure Bank Transfer Verification</p>
+          </div>
+        </div>
+        <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-2">
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider block">Official Bank Transfer Account</span>
+          <div class="text-xl font-black font-mono text-amber-300 tracking-wide select-all">3170852192</div>
+          <div class="text-xs text-slate-200 font-semibold">Account Name: Akaje Nelly Elozino</div>
+          <div class="text-xs text-slate-300 font-medium">Bank: First Bank of Nigeria</div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed">
+          Please transfer the exact amount to the First Bank account above. Once completed, provide your transaction reference ID and details below so Teacher Nelly can verify and issue your unlock code!
+        </p>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Your Name / Depositor Name</label>
+            <input type="text" id="depositorName" placeholder="e.g., Mrs. Chioma Adeleke" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Payment Transaction Reference ID</label>
+            <input type="text" id="paymentReferenceId" placeholder="e.g., FT2608931245 or TRF-998231" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono font-bold">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Your Phone / WhatsApp Number</label>
+            <input type="tel" id="depositorPhone" placeholder="e.g., 08012345678" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          </div>
+        </div>
+
+        <button onclick="submitPaymentForVerification()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 rounded-xl transition shadow flex items-center justify-center gap-2">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Submit Payment for Verification</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lesson Modal -->
+  <div id="lessonModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 shadow-2xl border border-slate-200 relative space-y-6">
+      
+      <button onclick="closeLessonModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center text-sm">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="border-b border-slate-200 pb-4 space-y-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="lessonModalLevel" class="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-blue-100 text-blue-800">Pre-Nursery</span>
+          <span id="lessonModalSubject" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">English Language</span>
+          <span id="lessonModalBadge" class="px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 flex items-center gap-1">
+            <i class="fa-solid fa-lock-open text-[10px]"></i> Free Access Lesson
+          </span>
+        </div>
+        <h2 id="lessonModalTitle" class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Lesson Title Here</h2>
+        <p id="lessonModalShortDesc" class="text-xs sm:text-sm text-slate-500 font-medium"></p>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4 flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-2 text-xs text-blue-900 font-bold">
+          <i class="fa-solid fa-circle-play text-blue-600 text-lg"></i>
+          <span>Listen to Teacher Nelly read this full lesson notes aloud!</span>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="speakCurrentLessonContent()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-extrabold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-volume-high"></i> Read Lesson Aloud
+          </button>
+          <button onclick="stopVoiceSpeech()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-3 py-2 rounded-xl transition">
+            <i class="fa-solid fa-pause"></i> Stop
+          </button>
+        </div>
+      </div>
+
+      <div id="lessonModalBody" class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal border-b border-slate-200 pb-6"></div>
+
+      <div id="lessonPracticeBox" class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-amber-500 text-base"></i> Quick Lesson Check
+          </h4>
+          <span class="text-[11px] font-bold text-slate-500">Test Your Understanding</span>
+        </div>
+        
+        <p id="lessonPracticeQuestion" class="font-bold text-slate-800 text-xs sm:text-sm"></p>
+        <div id="lessonPracticeOptions" class="space-y-2"></div>
+        <div id="lessonPracticeFeedback" class="hidden p-3 rounded-xl text-xs font-bold"></div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="closeLessonModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs px-5 py-2.5 rounded-xl transition">
+          Close Lesson
+        </button>
+        <button onclick="openCheckoutModal('Full VIP Access Upgrade')" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs px-5 py-2.5 rounded-xl transition shadow flex items-center gap-1.5">
+          <i class="fa-solid fa-crown"></i> Get Full VIP Access Pass (First Bank)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- APP STATE & STORAGE ---
+    let state = {
+      registeredStudents: [],
+      parentInquiries: [],
+      paymentVerifications: [],
+      activeCodes: [],
+      isVIP: false,
+      selectedLevel: 'All',
+      selectedSubject: 'All',
+      selectedPlan: '',
+      activeAlphabetIndex: 0,
+      activeLesson: null,
+      activeColorIndex: 0,
+      activeShapeIndex: 0,
+      parentPhone: '',
+      parentChildNames: [],
+      allowedClassLevels: []
+    };
+
+    // --- ADMIN / APP PERSISTENCE ---
+    const APP_STORAGE_KEY = "teacherNellyAcademyDataV2";
+
+    const API_BASE = "/.netlify/functions/academy-api";
+    async function academyApi(action, payload = {}, method = "POST") {
+      const opts = { method, headers: { "Content-Type": "application/json" } };
+      if (method !== "GET") opts.body = JSON.stringify({ action, ...payload });
+      const res = await fetch(`${API_BASE}${method === "GET" ? `?action=${encodeURIComponent(action)}` : ""}`, opts);
+      let data = {};
+      try { data = await res.json(); } catch {}
+      if (!res.ok) throw new Error(data.error || "Server request failed");
+      return data;
+    }
+
+
+    // Personal records, payments and admin credentials are stored server-side.
+    // The public browser intentionally does not persist sensitive records in localStorage.
+    function savePersistentState() { /* server-side persistence only */ }
+    function loadPersistentState() { /* server-side persistence only */ }
+
+    // --- ALPHABET DATASET (A to Z) ---
+    const ALPHABET_DATA = [
+      { letter: "Aa", word: "Apple", emoji: "🍎", phonics: "/æ/ as in Apple", sentence: "An apple a day keeps the doctor away!" },
+      { letter: "Bb", word: "Ball", emoji: "⚽", phonics: "/b/ as in Ball", sentence: "Bounce the big colorful ball in the park!" },
+      { letter: "Cc", word: "Cat", emoji: "🐱", phonics: "/k/ as in Cat", sentence: "The cute cat purrs happily in the sun." },
+      { letter: "Dd", word: "Dog", emoji: "🐶", phonics: "/d/ as in Dog", sentence: "The friendly dog wags its tail happily." },
+      { letter: "Ee", word: "Elephant", emoji: "🐘", phonics: "/e/ as in Elephant", sentence: "The giant elephant has a long trunk." },
+      { letter: "Ff", word: "Fish", emoji: "🐟", phonics: "/f/ as in Fish", sentence: "The golden fish swims gracefully in water." },
+      { letter: "Gg", word: "Giraffe", emoji: "🦒", phonics: "/g/ as in Giraffe", sentence: "The tall giraffe eats green leaves from trees." },
+      { letter: "Hh", word: "House", emoji: "🏠", phonics: "/h/ as in House", sentence: "We live happily in our beautiful warm house." },
+      { letter: "Ii", word: "Igloo", emoji: "🧊", phonics: "/ɪ/ as in Igloo", sentence: "An igloo is a cozy house built from ice." },
+      { letter: "Jj", word: "Juice", emoji: "🧃", phonics: "/dʒ/ as in Juice", sentence: "Drinking fresh orange juice gives us energy!" },
+      { letter: "Kk", word: "Kangaroo", emoji: "🦘", phonics: "/k/ as in Kangaroo", sentence: "The kangaroo hops around with her baby." },
+      { letter: "Ll", word: "Lion", emoji: "🦁", phonics: "/l/ as in Lion", sentence: "The brave lion roars loudly in the safari." },
+      { letter: "Mm", word: "Monkey", emoji: "🐒", phonics: "/m/ as in Monkey", sentence: "The silly monkey swings on tree branches." },
+      { letter: "Nn", word: "Nest", emoji: "🪺", phonics: "/n/ as in Nest", sentence: "Birds build a cozy nest for their eggs." },
+      { letter: "Oo", word: "Owl", emoji: "🦉", phonics: "/ɒ/ as in Owl", sentence: "The wise owl stays awake during the night." },
+      { letter: "Pp", word: "Pencil", emoji: "✏️", phonics: "/p/ as in Pencil", sentence: "Use your sharp pencil to write neat words." },
+      { letter: "Qq", word: "Queen", emoji: "👑", phonics: "/kw/ as in Queen", sentence: "The gracious queen wears a shining gold crown." },
+      { letter: "Rr", word: "Rabbit", emoji: "🐰", phonics: "/r/ as in Rabbit", sentence: "The fluffy white rabbit loves eating carrots." },
+      { letter: "Ss", word: "Sun", emoji: "☀️", phonics: "/s/ as in Sun", sentence: "The bright yellow sun warms up the day." },
+      { letter: "Tt", word: "Tiger", emoji: "🐅", phonics: "/t/ as in Tiger", sentence: "The striped tiger runs fast through the forest." },
+      { letter: "Uu", word: "Umbrella", emoji: "☂️", phonics: "/ʌ/ as in Umbrella", sentence: "Open your umbrella when it starts to rain!" },
+      { letter: "Vv", word: "Violin", emoji: "🎻", phonics: "/v/ as in Violin", sentence: "She plays sweet melodies on the violin." },
+      { letter: "Ww", word: "Watermelon", emoji: "🍉", phonics: "/w/ as in Watermelon", sentence: "Juicy watermelon is sweet on summer days." },
+      { letter: "Xx", word: "Xylophone", emoji: "🎼", phonics: "/ks/ as in Xylophone", sentence: "Tap colorful keys on the musical xylophone." },
+      { letter: "Yy", word: "Yacht", emoji: "⛵", phonics: "/j/ as in Yacht", sentence: "The white yacht sails smoothly on blue sea." },
+      { letter: "Zz", word: "Zebra", emoji: "🦓", phonics: "/z/ as in Zebra", sentence: "The zebra has black and white stripes." }
+    ];
+
+    // --- 2D COLORS DIAGRAM DATASET ---
+    const COLORS_DIAGRAM_DATA = [
+      { name: "Red", hex: "#ef4444", bgClass: "bg-red-500", desc: "Primary color. Associated with apples, stop signs, and roses." },
+      { name: "Blue", hex: "#3b82f6", bgClass: "bg-blue-500", desc: "Primary color. Associated with the clear sky, ocean, and rivers." },
+      { name: "Yellow", hex: "#eab308", bgClass: "bg-yellow-500", desc: "Primary color. Associated with the bright sun, bananas, and lemons." },
+      { name: "Green", hex: "#22c55e", bgClass: "bg-green-500", desc: "Secondary color (Blue + Yellow). Associated with grass, trees, and leaves." },
+      { name: "Purple", hex: "#a855f7", bgClass: "bg-purple-500", desc: "Secondary color (Red + Blue). Associated with grapes, plums, and royalty." },
+      { name: "Orange", hex: "#f97316", bgClass: "bg-orange-500", desc: "Secondary color (Red + Yellow). Associated with oranges, basketballs, and sunsets." }
+    ];
+
+    // --- 2D GEOMETRIC SHAPES DIAGRAM DATASET ---
+    const SHAPES_DIAGRAM_DATA = [
+      { name: "Circle", sides: "0 straight sides (1 curved line)", angles: "0 angles", example: "Clock, Coin, Wheel", svg: '<circle cx="30" cy="30" r="22" fill="#60a5fa" />' },
+      { name: "Square", sides: "4 equal sides", angles: "4 right angles ($90^\\circ$)", example: "Window, Chessboard", svg: '<rect x="8" y="8" width="44" height="44" fill="#f43f5e" rx="4" />' },
+      { name: "Triangle", sides: "3 sides", angles: "3 interior angles (Sum = $180^\\circ$)", example: "Roof, Pizza slice", svg: '<polygon points="30,6 54,50 6,50" fill="#facc15" />' },
+      { name: "Rectangle", sides: "4 sides (Opposite sides equal)", angles: "4 right angles ($90^\\circ$)", example: "Door, Book, Phone", svg: '<rect x="4" y="12" width="52" height="36" fill="#34d399" rx="4" />' },
+      { name: "Oval", sides: "0 straight sides (Curved ellipse)", angles: "0 angles", example: "Egg, Rugby ball", svg: '<ellipse cx="30" cy="30" rx="26" ry="18" fill="#c084fc" />' },
+      { name: "Star", sides: "10 boundary segments", angles: "5 acute tips", example: "Night sky star, Gold star", svg: '<polygon points="30,4 37,22 56,22 41,33 46,52 30,40 14,52 19,33 4,22 23,22" fill="#fbbf24" />' }
+    ];
+
+    // --- CURRICULUM DATASET WITH SEPARATED JSS TOPICS ---
+    const CURRICULUM_DATA = [
+      {
+        id: 1,
+        level: "Pre-Nursery",
+        subject: "English",
+        title: "Phonics & Sound Recognition",
+        shortDesc: "Mastering basic vowel sounds /a/, /e/, /i/, /o/, /u/ and letter sound connections.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Introduction to Vowel Sounds", text: "English letters have specific sounds. The five short vowels are: 'a' as in Apple, 'e' as in Egg, 'i' as in Igloo, 'o' as in Octopus, and 'u' as in Umbrella." },
+          { heading: "2. How to Practice at Home", text: "Say the sound repeatedly with hand gestures! Point to objects around the home that begin with short vowel sounds." }
+        ],
+        practice: {
+          question: "Which word starts with the short 'a' vowel sound?",
+          options: ["Apple", "Elephant", "Igloo", "Octopus"],
+          correct: 0,
+          explanation: "'Apple' starts with the short /æ/ vowel sound."
+        }
+      },
+      {
+        id: 2,
+        level: "Pre-Nursery",
+        subject: "Mathematics",
+        title: "Counting 1 to 20 & Basic Shapes",
+        shortDesc: "Fun number rhymes, finger counting, and recognizing circles, squares, and triangles.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Counting Numbers 1-10", text: "Counting helps children quantify objects. One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten!" },
+          { heading: "2. Exploring Basic Shapes", text: "A Circle is round like a ball. A Square has four equal straight sides. A Triangle has three sides and three corners." }
+        ],
+        practice: {
+          question: "How many sides does a triangle have?",
+          options: ["2 sides", "3 sides", "4 sides", "No sides"],
+          correct: 1,
+          explanation: "Triangles always have 3 sides and 3 angles."
+        }
+      },
+      {
+        id: 3,
+        level: "Pre-Nursery",
+        subject: "Sciences",
+        title: "Colors & My Immediate World",
+        shortDesc: "Identifying primary colors (Red, Blue, Yellow) and natural elements in nature.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Primary Colors", text: "Red, Blue, and Yellow are primary colors. The sky is Blue, ripe apples are Red, and the Sun shines Yellow!" },
+          { heading: "2. Seeing Nature Around Us", text: "Plants are green, soil is brown, and clouds are fluffy white in the sky." }
+        ],
+        practice: {
+          question: "What color is the bright afternoon sun?",
+          options: ["Blue", "Yellow", "Purple", "Black"],
+          correct: 1,
+          explanation: "The sun appears bright yellow during the day."
+        }
+      },
+      {
+        id: 4,
+        level: "Pre-Nursery",
+        subject: "Sciences",
+        title: "My Body Parts & Health Hygiene",
+        shortDesc: "Learning body parts (Eyes, Ears, Nose, Hands) and daily handwashing habits.",
+        isPremium: true,
+        sections: [
+          { heading: "1. Five Senses & Body Parts", text: "We see with our Eyes, hear with our Ears, smell with our Nose, taste with our Tongue, and feel with our Hands." },
+          { heading: "2. Handwashing Routine", text: "Wash hands with soap and clean water for at least 20 seconds before eating and after playing." }
+        ],
+        practice: {
+          question: "Which body part do we use to hear sounds and music?",
+          options: ["Nose", "Ears", "Eyes", "Hands"],
+          correct: 1,
+          explanation: "Our ears are responsible for the sense of hearing."
+        }
+      },
+      {
+        id: 5,
+        level: "Nursery 1–2",
+        subject: "English",
+        title: "CVC Word Building & Two-Letter Blends",
+        shortDesc: "Combining consonant-vowel-consonant sounds to read words like CAT, DOG, SUN, HEN.",
+        isPremium: false,
+        sections: [
+          { heading: "1. What is a CVC Word?", text: "CVC stands for Consonant - Vowels - Consonant. For example: C - A - T spells CAT. D - O - G spells DOG." },
+          { heading: "2. Sounding Out Blends", text: "Blend the sounds together smoothly: /b/-/a/-/t/ = BAT. /p/-/e/-/n/ = PEN." }
+        ],
+        practice: {
+          question: "What word is formed by blending /s/ + /u/ + /n/?",
+          options: ["SON", "SUN", "PIN", "RUN"],
+          correct: 1,
+          explanation: "The blend /s/ + /u/ + /n/ spells 'SUN'."
+        }
+      },
+      {
+        id: 6,
+        level: "Nursery 1–2",
+        subject: "English",
+        title: "Simple Sentences & Sight Words",
+        shortDesc: "Mastering high-frequency sight words (THE, IS, MY, SEE) in short 3-word sentences.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Essential Sight Words", text: "Sight words are words children should recognize instantly without sounding them out: The, Is, In, On, Go, Me, My." },
+          { heading: "2. Building First Sentences", text: "Example sentences: 'The cat is big.' 'I see my red ball.' 'The sun is up.'" }
+        ],
+        practice: {
+          question: "Which of the following is a complete simple sentence?",
+          options: ["The big cat.", "The dog is happy.", "In the cup.", "Red ball."],
+          correct: 1,
+          explanation: "'The dog is happy.' contains a subject (dog) and verb state (is happy)."
+        }
+      },
+      {
+        id: 7,
+        level: "Nursery 1–2",
+        subject: "Mathematics",
+        title: "Basic Addition & Subtraction with Pictures",
+        shortDesc: "Visual counting, adding objects together (+), and taking objects away (-).",
+        isPremium: false,
+        sections: [
+          { heading: "1. Picture Addition (+)", text: "If you have 2 apples 🍎🍎 and receive 3 more 🍎🍎🍎, you count them together: 1, 2, 3, 4, 5 apples total!" },
+          { heading: "2. Picture Subtraction (-)", text: "If you have 5 balloons 🎈🎈🎈🎈🎈 and 2 pop, you count what is left: 3 balloons!" }
+        ],
+        practice: {
+          question: "What is 4 + 3?",
+          options: ["6", "7", "8", "5"],
+          correct: 1,
+          explanation: "4 plus 3 equals 7."
+        }
+      },
+      {
+        id: 8,
+        level: "Nursery 1–2",
+        subject: "Sciences",
+        title: "Living & Non-Living Things",
+        shortDesc: "Distinguishing between living organisms (plants/animals) and inanimate objects.",
+        isPremium: true,
+        sections: [
+          { heading: "1. What Are Living Things?", text: "Living things breathe, eat food, grow, move on their own, and reproduce. Examples: Humans, Birds, Trees, Fish." },
+          { heading: "2. Non-Living Things", text: "Non-living things cannot grow, eat, or breathe. Examples: Stone, Chair, Pencil, Car, Toy." }
+        ],
+        practice: {
+          question: "Which of the following is a LIVING thing?",
+          options: ["Plastic Chair", "Green Tree", "Wooden Table", "Metal Spoon"],
+          correct: 1,
+          explanation: "Green trees are living organisms that grow and feed."
+        }
+      },
+      {
+        id: 9,
+        level: "Basic 1–6",
+        subject: "English",
+        title: "Parts of Speech: Nouns, Pronouns & Verbs",
+        shortDesc: "Mastering Nouns (naming words), Pronouns (replacements), and Verbs (action words).",
+        isPremium: false,
+        sections: [
+          { heading: "1. Nouns", text: "A Noun is a name of any person, place, animal, or thing. Proper nouns start with capital letters (e.g. Lagos, Nelly)." },
+          { heading: "2. Pronouns & Verbs", text: "Pronouns replace nouns (He, She, It, They). Verbs are action words showing what subject does (run, write, leap, think)." }
+        ],
+        practice: {
+          question: "Identify the action VERB in this sentence: 'The swift leopard ran across the field.'",
+          options: ["swift", "leopard", "ran", "field"],
+          correct: 2,
+          explanation: "'Ran' expresses the physical action executed by the leopard."
+        }
+      },
+      {
+        id: 10,
+        level: "Basic 1–6",
+        subject: "English",
+        title: "Prepositions of Place, Time & Direction",
+        shortDesc: "Using 'in', 'on', 'at', 'under', 'between', 'beside', and 'through' with precision.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Prepositions of Place", text: "Prepositions show relationship between a noun and another word. Example: The book is ON the table. The ball is UNDER the chair." },
+          { heading: "2. Prepositions of Time", text: "Use AT for exact times (at 4:00 PM), ON for days (on Monday), IN for months/years (in August, in 2026)." }
+        ],
+        practice: {
+          question: "Choose the correct preposition: 'Our school resumption is scheduled ___ Monday morning.'",
+          options: ["in", "on", "at", "by"],
+          correct: 1,
+          explanation: "Specific calendar days take the preposition 'on'."
+        }
+      },
+      {
+        id: 11,
+        level: "Basic 1–6",
+        subject: "English",
+        title: "Types of Sentences (Declarative, Imperative, Exclamatory)",
+        shortDesc: "Understanding statements, commands, questions, and exclamations with proper punctuation.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Declarative & Interrogative", text: "Declarative sentences state facts and end with a full stop (.). Interrogative sentences ask questions and end with a mark (?)." },
+          { heading: "2. Imperative & Exclamatory", text: "Imperative sentences give orders or requests ('Close the door.'). Exclamatory sentences express strong emotion ('What a beautiful day!')." }
+        ],
+        practice: {
+          question: "Which type of sentence is: 'Please hand me your assignment workbook.'?",
+          options: ["Exclamatory", "Imperative (Command/Request)", "Interrogative", "Declarative"],
+          correct: 1,
+          explanation: "It requests an action, making it an imperative sentence."
+        }
+      },
+      {
+        id: 12,
+        level: "Basic 1–6",
+        subject: "Mathematics",
+        title: "Fractions, Decimals & Percentages",
+        shortDesc: "Understanding numerators, denominators, converting fractions to decimals and percentages.",
+        isPremium: false,
+        sections: [
+          { heading: "1. What is a Fraction?", text: "A fraction represents a part of a whole. Top number = Numerator, Bottom number = Denominator." },
+          { heading: "2. Conversions", text: "1/2 = 0.5 = 50%. 1/4 = 0.25 = 25%. 3/4 = 0.75 = 75%." }
+        ],
+        practice: {
+          question: "What is 3/5 expressed as a percentage?",
+          options: ["30%", "50%", "60%", "75%"],
+          correct: 2,
+          explanation: "(3 ÷ 5) × 100 = 0.6 × 100 = 60%."
+        }
+      },
+      {
+        id: 13,
+        level: "Basic 1–6",
+        subject: "Sciences",
+        title: "Human Body Systems & Balanced Nutrition",
+        shortDesc: "Digestive, Circulatory, and Respiratory systems along with the six classes of food.",
+        isPremium: true,
+        sections: [
+          { heading: "1. Key Organ Systems", text: "Digestive system breaks down food; Circulatory system pumps blood via the heart; Respiratory system exchanges oxygen in lungs." },
+          { heading: "2. Six Classes of Food", text: "Carbohydrates (energy), Proteins (growth/repair), Fats/Oils (warmth), Vitamins (protection), Minerals (strong bones), Water." }
+        ],
+        practice: {
+          question: "Which class of food is primarily responsible for body growth and muscle repair?",
+          options: ["Carbohydrates", "Proteins", "Fats and Oils", "Vitamins"],
+          correct: 1,
+          explanation: "Proteins build tissue and repair damaged cells."
+        }
+      },
+      {
+        id: 14,
+        level: "Basic 1–6",
+        subject: "ICT & Tech",
+        title: "Basic Computer Components & Typing Basics",
+        shortDesc: "Hardware vs Software, Monitor, CPU, Keyboard, Mouse, and QWERTY touch typing.",
+        isPremium: true,
+        sections: [
+          { heading: "1. Hardware Components", text: "CPU (Central Processing Unit) is the brain of the computer. Monitor displays visual output. Keyboard enters alphanumeric text." },
+          { heading: "2. Input vs Output Devices", text: "Input devices send data into computer (Keyboard, Mouse, Mic). Output devices display/play results (Screen, Printer, Speaker)." }
+        ],
+        practice: {
+          question: "Which computer component is known as the processing brain?",
+          options: ["Monitor", "CPU", "Keyboard", "Printer"],
+          correct: 1,
+          explanation: "The CPU executes all computational logic."
+        }
+      },
+      // --- SEPARATE JSS ENGLISH TOPICS (PREPOSITION, ADVERBIAL, CONJUNCTION, CONCORD) ---
+      {
+        id: 15,
+        level: "JSS 1–3",
+        subject: "English",
+        title: "JSS English: Prepositions Explained Separately",
+        shortDesc: "Comprehensive study of prepositions of place, time, direction, and movement with examples.",
+        isPremium: false,
+        sections: [
+          { heading: "1. What is a Preposition?", text: "A preposition is a word placed before a noun or pronoun to show its relation to some other word in the sentence. It indicates time, place, direction, or spatial relationship." },
+          { heading: "2. Prepositions of Place & Position", text: "• IN: Used for enclosed spaces (e.g., 'The book is in the bag').\n• ON: Used for surfaces (e.g., 'The pen is on the table').\n• AT: Used for specific points (e.g., 'She is waiting at the bus stop')." },
+          { heading: "3. Prepositions of Direction & Movement", text: "• TOWARDS: 'He walked towards the library.'\n• ACROSS: 'They swam across the river.'\n• THROUGH: 'The train passed through the tunnel.'" }
+        ],
+        practice: {
+          question: "Choose the correct preposition: 'The cat jumped ___ the wall into the garden.'",
+          options: ["over", "in", "at", "by"],
+          correct: 0,
+          explanation: "'Over' indicates movement from one side of a barrier to the other."
+        }
+      },
+      {
+        id: 16,
+        level: "JSS 1–3",
+        subject: "English",
+        title: "JSS English: Adverbials Explained Separately",
+        shortDesc: "Mastering adverbial words, phrases, and clauses of time, place, manner, and reason.",
+        isPremium: false,
+        sections: [
+          { heading: "1. What is an Adverbial?", text: "An adverbial is a word, phrase, or clause that functions like an adverb by modifying a verb, adjective, or entire clause. Adverbials answer questions like How?, When?, Where?, and Why?" },
+          { heading: "2. Types of Adverbials with Examples", text: "• Adverbial of Manner: 'She sang **melodiously**.' (How?)\n• Adverbial of Time: 'We will write the exam **tomorrow morning**.' (When?)\n• Adverbial of Place: 'They are playing **in the school field**.' (Where?)\n• Adverbial of Reason: 'He stayed home **because he had a fever**.' (Why?)" }
+        ],
+        practice: {
+          question: "Identify the adverbial of manner in: 'The diligent prefect completed his assignment quietly.'",
+          options: ["The diligent", "prefect", "completed", "quietly"],
+          correct: 3,
+          explanation: "'Quietly' tells us how the assignment was completed."
+        }
+      },
+      {
+        id: 17,
+        level: "JSS 1–3",
+        subject: "English",
+        title: "JSS English: Conjunctions Explained Separately",
+        shortDesc: "Coordinating (FANBOYS), subordinating, and correlative conjunctions with clear examples.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Coordinating Conjunctions (FANBOYS)", text: "Coordinating conjunctions join words or independent clauses of equal grammatical rank: For, And, Nor, But, Or, Yet, So.\nExample: 'Amina wanted to go to the party, but she had to study.'" },
+          { heading: "2. Subordinating Conjunctions", text: "Subordinating conjunctions link an independent clause to a dependent clause (cause, condition, time):\nExamples: Because, Although, Unless, Since, While, Whereas.\nExample: 'We stayed indoors because it was raining heavily.'" },
+          { heading: "3. Correlative Conjunctions", text: "Used in pairs: Either...or, Neither...nor, Both...and, Not only...but also." }
+        ],
+        practice: {
+          question: "Choose the correct conjunction: 'You will fail the test ___ you study hard.'",
+          options: ["because", "unless", "and", "so"],
+          correct: 1,
+          explanation: "'Unless' means 'if not', establishing the condition."
+        }
+      },
+      {
+        id: 18,
+        level: "JSS 1–3",
+        subject: "English",
+        title: "JSS English: Concord (Agreement) Explained Separately",
+        shortDesc: "Rules of grammatical agreement between subjects and verbs in Junior Secondary English.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Basic Rule of Concord", text: "Concord refers to the grammatical harmony between a subject and its verb. A singular subject requires a singular verb, while a plural subject requires a plural verb.\nExample: 'The boy plays football' (Singular) vs 'The boys play football' (Plural)." },
+          { heading: "2. Compound Subjects with 'And'", text: "Two or more singular subjects joined by 'AND' generally take a plural verb.\nExample: 'Nelly and Chidi ARE brilliant students.'" },
+          { heading: "3. Indefinite Pronouns", text: "Pronouns like Everyone, Everybody, Someone, Anybody, Nobody take singular verbs.\nExample: 'Everyone IS ready for the test.'" }
+        ],
+        practice: {
+          question: "Choose the correct verb: 'Neither the teacher nor the students ___ present.'",
+          options: ["was", "were", "is", "has"],
+          correct: 1,
+          explanation: "When subjects are joined by 'neither... nor', the verb agrees with the closer subject ('students' is plural, hence 'were')."
+        }
+      },
+      {
+        id: 19,
+        level: "JSS 1–3",
+        subject: "Mathematics",
+        title: "Algebraic Expressions & Linear Equations",
+        shortDesc: "Simplifying algebraic terms, solving 1-variable linear equations, and word problems.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Algebraic Variables", text: "Letters like x, y, z represent unknown values. Like terms can be collected: 3x + 5x = 8x." },
+          { heading: "2. Solving Linear Equations", text: "To solve 4x - 8 = 16: Add 8 to both sides (4x = 24), then divide by 4 (x = 6)." }
+        ],
+        practice: {
+          question: "Solve for y in the equation: 5y + 15 = 40",
+          options: ["y = 3", "y = 5", "y = 8", "y = 25"],
+          correct: 1,
+          explanation: "5y = 40 - 15 = 25 -> y = 25 / 5 = 5."
+        }
+      },
+      {
+        id: 20,
+        level: "JSS 1–3",
+        subject: "Sciences",
+        title: "Photosynthesis & Ecosystem Dynamics",
+        shortDesc: "Chemical equation of photosynthesis, food chains, webs, and environmental conservation.",
+        isPremium: false,
+        sections: [
+          { heading: "1. Photosynthesis Formula", text: "6CO₂ + 6H₂O + Sunlight → C₆H₁₂O₆ + 6O₂. Green plants absorb carbon dioxide and water to synthesize glucose and release oxygen." },
+          { heading: "2. Food Chains & Energy Transfer", text: "Producers (Plants) → Primary Consumers (Herbivores) → Secondary Consumers (Carnivores) → Decomposers." }
+        ],
+        practice: {
+          question: "What essential gas do plants release into the atmosphere during photosynthesis?",
+          options: ["Carbon Dioxide", "Nitrogen", "Oxygen", "Methane"],
+          correct: 2,
+          explanation: "Photosynthesis releases oxygen gas as a byproduct."
+        }
+      },
+      {
+        id: 21,
+        level: "JSS 1–3",
+        subject: "ICT & Tech",
+        title: "Computer Programming Concepts & Algorithms",
+        shortDesc: "Understanding pseudo-code, flowcharts, variables, loops, and conditional logic.",
+        isPremium: true,
+        sections: [
+          { heading: "1. What is an Algorithm?", text: "An algorithm is a step-by-step set of instructions designed to perform a specific task or solve a mathematical problem." },
+          { heading: "2. Control Structures", text: "If-Else statements make decisions based on conditions; For/While loops repeat code blocks efficiently." }
+        ],
+        practice: {
+          question: "Which programming concept is used to repeat a block of code multiple times?",
+          options: ["Variable", "Loop", "Comment", "Constant"],
+          correct: 1,
+          explanation: "Loops (such as For and While) iterate repetitive logic."
+        }
+      },
+      {
+        id: 22,
+        level: "SSS 1–3",
+        subject: "WAEC Prep",
+        title: "Subject-Verb Concord Masterclass",
+        shortDesc: "Comprehensive rules of grammatical agreement for WAEC and NECO English exams.",
+        isPremium: false,
+        sections: [
+          { heading: "Rule 1: Singular vs Plural Subjects", text: "A singular subject takes a singular verb ('The teacher teaches'), while a plural subject takes a plural verb ('The teachers teach')." },
+          { heading: "Rule 2: 'Either... Or' & 'Neither... Nor'", text: "The verb agrees with the closer subject: 'Neither the principal nor the TEACHERS WERE present.'" }
+        ],
+        practice: {
+          question: "Choose the grammatically correct sentence for WAEC standard:",
+          options: [
+            "Neither the boy nor his parents is coming.",
+            "Neither the boy nor his parents are coming.",
+            "Neither the boy nor his parents was coming.",
+            "Neither the boy or his parents comes."
+          ],
+          correct: 1,
+          explanation: "'Parents' is plural and closest to the verb, requiring 'are'."
+        }
+      },
+      {
+        id: 23,
+        level: "SSS 1–3",
+        subject: "Mathematics",
+        title: "Quadratic Equations, Trigonometry & Calculus Intro",
+        shortDesc: "Factorization, quadratic formula, Sine/Cosine rules, and Differentiation.",
+        isPremium: false,
+        sections: [
+          { heading: "1. General Quadratic Form", text: "ax² + bx + c = 0. Roots calculated via factorization, completing the square, or formula: x = (-b ± √(b² - 4ac)) / (2a)." },
+          { heading: "2. Trigonometry Ratios (SOH CAH TOA)", text: "Sin θ = Opp/Hyp, Cos θ = Adj/Hyp, Tan θ = Opp/Adj." }
+        ],
+        practice: {
+          question: "Find the derivative (dy/dx) of y = 4x³ + 2x",
+          options: ["12x² + 2", "4x² + 2", "12x³ + 2x", "8x² + 2"],
+          correct: 0,
+          explanation: "dy/dx = (3 × 4)x³⁻¹ + (1 × 2)x¹⁻¹ = 12x² + 2."
+        }
+      },
+      {
+        id: 24,
+        level: "SSS 1–3",
+        subject: "Sciences",
+        title: "Chemistry: Stoichiometry & Organic Chemistry",
+        shortDesc: "Mole concept, balanced equations, alkanes, alkenes, alkynes, and functional groups.",
+        isPremium: true,
+        sections: [
+          { heading: "1. The Mole Concept & Molar Mass", text: "1 Mole = 6.022 × 10²³ particles (Avogadro's Constant). Number of moles = Mass / Molar Mass." },
+          { heading: "2. Hydrocarbons & Functional Groups", text: "Alkanes (CₙH₂ₙ₊₂ - saturated), Alkenes (CₙH₂ₙ - double bond), Alkynes (CₙH₂ₙ₋₂ - triple bond)." }
+        ],
+        practice: {
+          question: "What is the general molecular formula for Alkenes?",
+          options: ["CₙH₂ₙ₊₂", "CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙH₂ₙ₊₁OH"],
+          correct: 1,
+          explanation: "Alkenes possess one carbon-carbon double bond with formula CₙH₂ₙ."
+        }
+      },
+      {
+        id: 25,
+        level: "SSS 1–3",
+        subject: "Sciences",
+        title: "Physics: Laws of Motion, Energy & Electricity",
+        shortDesc: "Newton's 3 Laws, Work-Energy Theorem, Ohm's Law (V = IR), and Electrical Circuits.",
+        isPremium: true,
+        sections: [
+          { heading: "1. Newton's Laws of Motion", text: "1st Law: Inertia. 2nd Law: Force = mass × acceleration (F = ma). 3rd Law: Action and reaction are equal and opposite." },
+          { heading: "2. Electricity & Ohm's Law", text: "Voltage (V) = Current (I) × Resistance (R). Power P = IV = I²R." }
+        ],
+        practice: {
+          question: "Calculate the potential difference (Voltage) across a 10 Ω resistor carrying 3 A current.",
+          options: ["13 V", "30 V", "3.3 V", "300 V"],
+          correct: 1,
+          explanation: "V = I × R = 3 A × 10 Ω = 30 V."
+        }
+      },
+      {
+        id: 26,
+        level: "SSS 1–3",
+        subject: "Sciences",
+        title: "Biology: Genetics, DNA Structure & Inheritance",
+        shortDesc: "Mendelian genetics, dominant vs recessive traits, Punnett squares, and DNA replication.",
+        isPremium: true,
+        sections: [
+          { heading: "1. Mendel's Laws of Heredity", text: "Genes are units of inheritance located on chromosomes. Alleles can be dominant or recessive." },
+          { heading: "2. DNA Structure", text: "DNA is a double-helix structure: Adenine (A) pairs with Thymine (T), Guanine (G) pairs with Cytosine (C)." }
+        ],
+        practice: {
+          question: "In DNA base pairing, which nucleotide base pairs with Adenine (A)?",
+          options: ["Guanine", "Cytosine", "Thymine", "Uracil"],
+          correct: 2,
+          explanation: "Adenine always pairs with Thymine in DNA."
+        }
+      }
+    ];
+
+    // --- WAEC EXAM BANK (100 QUESTIONS) ---
+    let waecQuestions = [];
+    let currentExamIndex = 0;
+    let examAnswers = {};
+    let examTimerInterval = null;
+    let examTimeRemaining = 7200; // 120 mins
+    let examSubmitted = false;
+
+    // --- WAEC / NECO-STYLE SECONDARY EXAM QUESTION BANK ---
+    // These are original practice questions written in WAEC/NECO style, not copied past-paper questions.
+    const WAEC_NECO_QUESTION_BANK = [{"id": 1, "subject": "Mathematics", "text": "If 3x + 5 = 20, what is x?", "options": ["3", "5", "7", "15"], "correct": 1, "rationale": "Subtract 5 from both sides to get 3x = 15, then divide by 3."}, {"id": 2, "subject": "Mathematics", "text": "Simplify 2/3 + 1/6.", "options": ["1/2", "2/3", "5/6", "1"], "correct": 2, "rationale": "Use a common denominator of 6: 4/6 + 1/6 = 5/6."}, {"id": 3, "subject": "Mathematics", "text": "A trader buys an item for ₦8,000 and sells it for ₦10,000. What is the percentage profit? ", "options": ["20%", "25%", "30%", "40%"], "correct": 1, "rationale": "Profit is ₦2,000; ₦2,000 ÷ ₦8,000 × 100 = 25%."}, {"id": 4, "subject": "Mathematics", "text": "Find the simple interest on ₦50,000 at 8% per annum for 2 years.", "options": ["₦4,000", "₦8,000", "₦10,000", "₦58,000"], "correct": 1, "rationale": "Simple interest = PRT/100 = 50,000 × 8 × 2 / 100 = ₦8,000."}, {"id": 5, "subject": "Mathematics", "text": "Solve 2x − 7 = 11.", "options": ["2", "7", "9", "18"], "correct": 2, "rationale": "Add 7 to both sides to get 2x = 18, so x = 9."}, {"id": 6, "subject": "Mathematics", "text": "The mean of 4, 7, 9 and 10 is:", "options": ["7", "7.5", "8", "30"], "correct": 1, "rationale": "The sum is 30 and 30 ÷ 4 = 7.5."}, {"id": 7, "subject": "Mathematics", "text": "A rectangle has length 12 cm and width 5 cm. Its area is:", "options": ["17 cm²", "34 cm²", "60 cm²", "120 cm²"], "correct": 2, "rationale": "Area of a rectangle is length × width = 12 × 5 = 60 cm²."}, {"id": 8, "subject": "Mathematics", "text": "What is the next term in the sequence 3, 6, 12, 24, ...?", "options": ["30", "36", "48", "54"], "correct": 2, "rationale": "Each term is multiplied by 2, so 24 × 2 = 48."}, {"id": 9, "subject": "Mathematics", "text": "If y = 2x + 3, find y when x = 4.", "options": ["8", "9", "11", "12"], "correct": 2, "rationale": "Substitute x = 4: y = 2(4) + 3 = 11."}, {"id": 10, "subject": "Mathematics", "text": "Factorize x² − 9.", "options": ["(x−9)(x+1)", "(x−3)(x+3)", "(x−1)(x+9)", "(x−3)²"], "correct": 1, "rationale": "This is a difference of two squares: x² − 3² = (x−3)(x+3)."}, {"id": 11, "subject": "Mathematics", "text": "A bag contains 3 red and 2 blue balls. What is the probability of selecting a blue ball?", "options": ["2/3", "2/5", "3/5", "1/2"], "correct": 1, "rationale": "There are 2 blue balls out of 5 balls, giving 2/5."}, {"id": 12, "subject": "Mathematics", "text": "Convert 0.375 to a fraction in its simplest form.", "options": ["3/8", "5/8", "3/10", "375/100"], "correct": 0, "rationale": "0.375 = 375/1000, which simplifies to 3/8."}, {"id": 13, "subject": "Mathematics", "text": "The exterior angle of a regular triangle is:", "options": ["30°", "60°", "90°", "120°"], "correct": 3, "rationale": "A regular triangle has interior angles of 60°, so an exterior angle is 180° − 60° = 120°."}, {"id": 14, "subject": "Mathematics", "text": "Solve 5x = 35.", "options": ["5", "6", "7", "8"], "correct": 2, "rationale": "Divide both sides by 5 to get x = 7."}, {"id": 15, "subject": "Mathematics", "text": "A circle has radius 7 cm. Using π = 22/7, find its circumference.", "options": ["22 cm", "44 cm", "88 cm", "154 cm"], "correct": 1, "rationale": "Circumference = 2πr = 2 × 22/7 × 7 = 44 cm."}, {"id": 16, "subject": "Mathematics", "text": "If 20% of a number is 18, what is the number?", "options": ["36", "72", "90", "180"], "correct": 2, "rationale": "0.20 × number = 18, so number = 18 ÷ 0.20 = 90."}, {"id": 17, "subject": "Mathematics", "text": "The gradient of the line y = 4x − 2 is:", "options": ["−4", "−2", "2", "4"], "correct": 3, "rationale": "In y = mx + c, m is the coefficient of x, so the gradient is 4."}, {"id": 18, "subject": "Mathematics", "text": "Expand (x + 3)(x + 2).", "options": ["x² + 5x + 6", "x² + 6x + 5", "x² + x + 6", "x² + 5x + 5"], "correct": 0, "rationale": "Multiplying gives x² + 2x + 3x + 6 = x² + 5x + 6."}, {"id": 19, "subject": "Mathematics", "text": "A car travels 180 km in 3 hours. Its average speed is:", "options": ["30 km/h", "45 km/h", "60 km/h", "90 km/h"], "correct": 2, "rationale": "Average speed = distance ÷ time = 180 ÷ 3 = 60 km/h."}, {"id": 20, "subject": "English Language", "text": "Choose the word that is closest in meaning to 'abundant'.", "options": ["Scarce", "Plentiful", "Empty", "Weak"], "correct": 1, "rationale": "Abundant means available in large quantities, so plentiful is the closest meaning."}, {"id": 21, "subject": "English Language", "text": "Choose the word opposite in meaning to 'reluctant'.", "options": ["Unwilling", "Hesitant", "Willing", "Doubtful"], "correct": 2, "rationale": "Reluctant means unwilling or hesitant; willing is its opposite."}, {"id": 22, "subject": "English Language", "text": "Choose the correct option: Neither the teacher nor the students ___ late.", "options": ["was", "were", "is", "has"], "correct": 1, "rationale": "With 'neither...nor', the verb agrees with the nearer plural subject 'students': were."}, {"id": 23, "subject": "English Language", "text": "Choose the correct sentence.", "options": ["She don't like rice.", "She doesn't likes rice.", "She doesn't like rice.", "She not like rice."], "correct": 2, "rationale": "The singular subject 'she' takes 'doesn't', followed by the base verb 'like'."}, {"id": 24, "subject": "English Language", "text": "Identify the noun in the sentence: 'The farmer planted maize.'", "options": ["The", "farmer", "planted", "maize"], "correct": 1, "rationale": "'Farmer' is a noun because it names a person."}, {"id": 25, "subject": "English Language", "text": "Which word is an adverb in 'The boy ran quickly to school'?", "options": ["boy", "ran", "quickly", "school"], "correct": 2, "rationale": "'Quickly' modifies the verb 'ran' and tells how the action happened."}, {"id": 26, "subject": "English Language", "text": "Choose the correct preposition: The book is ___ the table.", "options": ["at", "on", "by", "to"], "correct": 1, "rationale": "The normal expression for something resting on a surface is 'on the table'."}, {"id": 27, "subject": "English Language", "text": "Which word is a conjunction?", "options": ["Beautiful", "And", "Quickly", "Teacher"], "correct": 1, "rationale": "'And' joins words, phrases or clauses, so it is a conjunction."}, {"id": 28, "subject": "English Language", "text": "Choose the correctly punctuated sentence.", "options": ["What a beautiful day.", "What a beautiful day!", "What a beautiful day,", "What a beautiful day?"], "correct": 1, "rationale": "An exclamation mark is appropriate for a strong expression such as this."}, {"id": 29, "subject": "English Language", "text": "The expression 'as brave as a lion' is an example of:", "options": ["Metaphor", "Simile", "Irony", "Pun"], "correct": 1, "rationale": "It compares two things using the word 'as', making it a simile."}, {"id": 30, "subject": "English Language", "text": "Choose the correctly spelt word.", "options": ["Accommodation", "Acommodation", "Accomodation", "Acommoddation"], "correct": 0, "rationale": "Accommodation is the standard spelling."}, {"id": 31, "subject": "English Language", "text": "Choose the correct tense: By next June, she ___ the course.", "options": ["completed", "will have completed", "completes", "has completed"], "correct": 1, "rationale": "The future perfect describes an action that will be completed before a future time."}, {"id": 32, "subject": "English Language", "text": "Choose the correct pronoun: The principal spoke to Ada and ___.", "options": ["I", "me", "my", "mine"], "correct": 1, "rationale": "After the preposition 'to', the object pronoun 'me' is required."}, {"id": 33, "subject": "English Language", "text": "Which word is an adjective in 'The clever student answered correctly'?", "options": ["student", "answered", "clever", "correctly"], "correct": 2, "rationale": "'Clever' describes the noun 'student', so it is an adjective."}, {"id": 34, "subject": "English Language", "text": "Choose the correct form: If I ___ enough money, I would buy the laptop.", "options": ["have", "had", "will have", "am having"], "correct": 1, "rationale": "The second conditional uses the past form 'had' in the if-clause."}, {"id": 35, "subject": "English Language", "text": "What is the main purpose of a topic sentence in a paragraph?", "options": ["To introduce the paragraph's main idea", "To list every punctuation mark", "To provide the final bibliography", "To replace the title of a book"], "correct": 0, "rationale": "A topic sentence introduces or states the main idea of a paragraph."}, {"id": 36, "subject": "English Language", "text": "Choose the word that best completes the sentence: The committee arrived ___ a decision.", "options": ["at", "on", "in", "by"], "correct": 0, "rationale": "The standard collocation is 'arrive at a decision'."}, {"id": 37, "subject": "English Language", "text": "Which sentence is in the passive voice?", "options": ["The boy kicked the ball.", "The ball was kicked by the boy.", "The boy is kicking the ball.", "The boy will kick the ball."], "correct": 1, "rationale": "The passive construction places the receiver of the action first: 'The ball was kicked...'."}, {"id": 38, "subject": "English Language", "text": "Choose the correct plural of 'criterion'.", "options": ["Criterions", "Criteria", "Criterias", "Criterion"], "correct": 1, "rationale": "The accepted plural form of criterion is criteria."}, {"id": 39, "subject": "English Language", "text": "A formal letter is most likely to begin with:", "options": ["Dear Sir/Madam", "Hey friend!", "What's up?", "Hi buddy"], "correct": 0, "rationale": "'Dear Sir/Madam' is a conventional formal salutation when the recipient's name is unknown."}, {"id": 40, "subject": "Chemistry", "text": "Which particle has a negative charge?", "options": ["Proton", "Neutron", "Electron", "Nucleus"], "correct": 2, "rationale": "Electrons carry negative electric charge."}, {"id": 41, "subject": "Chemistry", "text": "The chemical symbol for sodium is:", "options": ["So", "Sd", "Na", "S"], "correct": 2, "rationale": "Sodium is represented by the symbol Na."}, {"id": 42, "subject": "Chemistry", "text": "A solution with pH 3 is:", "options": ["Strongly acidic", "Neutral", "Weakly alkaline", "Strongly alkaline"], "correct": 0, "rationale": "A pH below 7 is acidic; pH 3 is acidic."}, {"id": 43, "subject": "Chemistry", "text": "What is the formula of water?", "options": ["CO₂", "H₂O", "O₂", "H₂"], "correct": 1, "rationale": "Water contains two hydrogen atoms bonded to one oxygen atom."}, {"id": 44, "subject": "Chemistry", "text": "Which gas is released when an acid reacts with a carbonate?", "options": ["Oxygen", "Hydrogen", "Carbon dioxide", "Nitrogen"], "correct": 2, "rationale": "Acid-carbonate reactions produce carbon dioxide, water and a salt."}, {"id": 45, "subject": "Chemistry", "text": "What is the valency of oxygen in most simple compounds?", "options": ["1", "2", "3", "4"], "correct": 1, "rationale": "Oxygen commonly forms two bonds or has valency 2."}, {"id": 46, "subject": "Chemistry", "text": "Which method is best for separating an insoluble solid from a liquid?", "options": ["Filtration", "Distillation", "Chromatography", "Evaporation"], "correct": 0, "rationale": "Filtration separates an insoluble solid from a liquid using a filter."}, {"id": 47, "subject": "Chemistry", "text": "The process by which a solid changes directly to a gas is:", "options": ["Melting", "Freezing", "Sublimation", "Condensation"], "correct": 2, "rationale": "Sublimation is the direct change from solid to gas."}, {"id": 48, "subject": "Chemistry", "text": "Which of these is a noble gas?", "options": ["Chlorine", "Neon", "Hydrogen", "Sulfur"], "correct": 1, "rationale": "Neon is in Group 18, the noble gases."}, {"id": 49, "subject": "Chemistry", "text": "Rusting of iron requires oxygen and:", "options": ["Nitrogen", "Water", "Carbon dioxide only", "Helium"], "correct": 1, "rationale": "Iron rusts in the presence of oxygen and water."}, {"id": 50, "subject": "Chemistry", "text": "A catalyst generally:", "options": ["Is permanently consumed", "Slows every reaction", "Changes reaction rate without being consumed", "Changes the products into elements"], "correct": 2, "rationale": "A catalyst alters reaction rate and is regenerated rather than permanently consumed."}, {"id": 51, "subject": "Chemistry", "text": "Which substance is an alkali?", "options": ["Hydrochloric acid", "Sodium hydroxide", "Carbon dioxide", "Ethanol"], "correct": 1, "rationale": "Sodium hydroxide is a soluble base and therefore an alkali."}, {"id": 52, "subject": "Chemistry", "text": "The atomic number of an element equals the number of its:", "options": ["Neutrons only", "Protons", "Shells", "Nucleons"], "correct": 1, "rationale": "Atomic number is defined by the number of protons in the nucleus."}, {"id": 53, "subject": "Chemistry", "text": "Which type of bond involves sharing electrons between atoms?", "options": ["Ionic", "Covalent", "Metallic only", "Nuclear"], "correct": 1, "rationale": "Covalent bonds form when atoms share electron pairs."}, {"id": 54, "subject": "Chemistry", "text": "What is the relative molecular mass of H₂O if H = 1 and O = 16?", "options": ["17", "18", "19", "20"], "correct": 1, "rationale": "Mr = (2 × 1) + 16 = 18."}, {"id": 55, "subject": "Physics", "text": "What is the SI unit of force?", "options": ["Joule", "Newton", "Watt", "Pascal"], "correct": 1, "rationale": "Force is measured in newtons (N)."}, {"id": 56, "subject": "Physics", "text": "Which instrument measures electric current?", "options": ["Voltmeter", "Ammeter", "Thermometer", "Barometer"], "correct": 1, "rationale": "An ammeter is connected in a circuit to measure current."}, {"id": 57, "subject": "Physics", "text": "The speed of light in vacuum is approximately:", "options": ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10⁴ m/s", "3 × 10² m/s"], "correct": 0, "rationale": "Light travels in vacuum at approximately 3 × 10⁸ metres per second."}, {"id": 58, "subject": "Physics", "text": "What form of energy is stored in a stretched spring?", "options": ["Chemical", "Elastic potential", "Nuclear", "Sound"], "correct": 1, "rationale": "A stretched spring stores elastic potential energy."}, {"id": 59, "subject": "Physics", "text": "Which quantity is measured in ohms?", "options": ["Current", "Resistance", "Charge", "Power"], "correct": 1, "rationale": "Electrical resistance is measured in ohms (Ω)."}, {"id": 60, "subject": "Physics", "text": "A device that converts electrical energy to mechanical energy is a:", "options": ["Motor", "Generator", "Transformer", "Fuse"], "correct": 0, "rationale": "An electric motor converts electrical energy into mechanical motion."}, {"id": 61, "subject": "Physics", "text": "What happens to pressure in a fixed mass of gas when its volume decreases at constant temperature?", "options": ["It decreases", "It increases", "It becomes zero", "It remains always unchanged"], "correct": 1, "rationale": "At constant temperature, decreasing volume increases gas pressure."}, {"id": 62, "subject": "Physics", "text": "Which wave can travel through a vacuum?", "options": ["Sound", "Water", "Light", "Seismic only"], "correct": 2, "rationale": "Electromagnetic waves such as light can travel through vacuum."}, {"id": 63, "subject": "Physics", "text": "The unit of power is:", "options": ["Watt", "Newton", "Volt", "Ohm"], "correct": 0, "rationale": "Power is measured in watts (W)."}, {"id": 64, "subject": "Physics", "text": "A 10 Ω resistor carries a current of 3 A. What is the potential difference?", "options": ["13 V", "30 V", "3.3 V", "300 V"], "correct": 1, "rationale": "Using V = IR, V = 3 × 10 = 30 V."}, {"id": 65, "subject": "Physics", "text": "Which lens is commonly used as a magnifying glass?", "options": ["Concave", "Convex", "Plane", "Cylindrical"], "correct": 1, "rationale": "A convex lens can form a magnified upright image when the object is within its focal length."}, {"id": 66, "subject": "Physics", "text": "What is acceleration?", "options": ["Distance travelled", "Rate of change of velocity", "Mass per unit volume", "Force per unit area"], "correct": 1, "rationale": "Acceleration is the rate at which velocity changes with time."}, {"id": 67, "subject": "Physics", "text": "Which material is a good electrical conductor?", "options": ["Copper", "Rubber", "Dry wood", "Plastic"], "correct": 0, "rationale": "Copper has many mobile charge carriers and conducts electricity well."}, {"id": 68, "subject": "Physics", "text": "A body remains at rest or in uniform motion unless acted on by an external force. This is:", "options": ["Newton's first law", "Newton's second law", "Newton's third law", "Hooke's law"], "correct": 0, "rationale": "This statement describes Newton's first law of motion."}, {"id": 69, "subject": "Physics", "text": "Which quantity has both magnitude and direction?", "options": ["Speed", "Distance", "Mass", "Velocity"], "correct": 3, "rationale": "Velocity is a vector quantity because it has magnitude and direction."}, {"id": 70, "subject": "Biology", "text": "The basic unit of life is the:", "options": ["Tissue", "Organ", "Cell", "System"], "correct": 2, "rationale": "The cell is the basic structural and functional unit of living organisms."}, {"id": 71, "subject": "Biology", "text": "Which organ pumps blood around the human body?", "options": ["Lung", "Heart", "Kidney", "Liver"], "correct": 1, "rationale": "The heart contracts to pump blood through the circulatory system."}, {"id": 72, "subject": "Biology", "text": "Photosynthesis mainly takes place in the:", "options": ["Nucleus", "Chloroplast", "Ribosome", "Vacuole"], "correct": 1, "rationale": "Chloroplasts contain chlorophyll and are the main site of photosynthesis."}, {"id": 73, "subject": "Biology", "text": "Which gas is used by green plants during photosynthesis?", "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], "correct": 2, "rationale": "Plants use carbon dioxide and water to produce glucose during photosynthesis."}, {"id": 74, "subject": "Biology", "text": "The movement of water through a selectively permeable membrane is:", "options": ["Diffusion", "Osmosis", "Transpiration", "Respiration"], "correct": 1, "rationale": "Osmosis is the movement of water across a selectively permeable membrane."}, {"id": 75, "subject": "Biology", "text": "Which blood cells help defend the body against pathogens?", "options": ["Red blood cells", "White blood cells", "Platelets", "Plasma only"], "correct": 1, "rationale": "White blood cells are central to immune defence."}, {"id": 76, "subject": "Biology", "text": "Which part of a plant absorbs most water from the soil?", "options": ["Flower", "Root hairs", "Fruit", "Stem tip"], "correct": 1, "rationale": "Root hairs provide a large surface area for absorbing water and mineral salts."}, {"id": 77, "subject": "Biology", "text": "Mendel's experiments mainly investigated:", "options": ["Inheritance", "Digestion", "Respiration", "Photosynthesis"], "correct": 0, "rationale": "Mendel's work established foundational principles of heredity and inheritance."}, {"id": 78, "subject": "Biology", "text": "In DNA, adenine pairs with:", "options": ["Cytosine", "Guanine", "Thymine", "Uracil"], "correct": 2, "rationale": "In DNA base pairing, adenine pairs with thymine."}, {"id": 79, "subject": "Biology", "text": "Which organ removes many nitrogenous waste products from the blood?", "options": ["Kidney", "Heart", "Stomach", "Pancreas"], "correct": 0, "rationale": "The kidneys filter blood and form urine containing nitrogenous wastes."}, {"id": 80, "subject": "Biology", "text": "Respiration that releases energy from glucose using oxygen is:", "options": ["Anaerobic respiration", "Aerobic respiration", "Transpiration", "Excretion"], "correct": 1, "rationale": "Aerobic respiration uses oxygen to release energy from glucose."}, {"id": 81, "subject": "Biology", "text": "Which structure controls many activities of a cell?", "options": ["Cell wall", "Nucleus", "Chlorophyll", "Cytoplasm only"], "correct": 1, "rationale": "The nucleus contains genetic material and regulates many cellular activities."}, {"id": 82, "subject": "Biology", "text": "A relationship in which both organisms benefit is called:", "options": ["Parasitism", "Mutualism", "Predation", "Competition"], "correct": 1, "rationale": "Mutualism is an interaction in which both participating organisms benefit."}, {"id": 83, "subject": "Biology", "text": "What is the male reproductive cell in humans?", "options": ["Ovum", "Sperm cell", "Zygote", "Embryo"], "correct": 1, "rationale": "The sperm cell is the male gamete."}, {"id": 84, "subject": "Biology", "text": "Which process produces two genetically similar daughter cells for growth and repair?", "options": ["Meiosis", "Mitosis", "Fertilization", "Pollination"], "correct": 1, "rationale": "Mitosis produces daughter cells with the same chromosome number as the parent cell."}, {"id": 85, "subject": "General Studies", "text": "Which branch of government interprets laws in a democratic state?", "options": ["Executive", "Legislature", "Judiciary", "Civil service"], "correct": 2, "rationale": "The judiciary interprets laws and adjudicates disputes."}, {"id": 86, "subject": "General Studies", "text": "What does ICT stand for?", "options": ["Information and Communication Technology", "International Computer Training", "Internet Control Technique", "Information Coding Theory"], "correct": 0, "rationale": "ICT means Information and Communication Technology."}, {"id": 87, "subject": "General Studies", "text": "Which Nigerian institution is primarily responsible for conducting the Senior School Certificate Examination?", "options": ["WAEC", "WHO", "FAO", "UNESCO"], "correct": 0, "rationale": "WAEC conducts the West African Senior School Certificate Examination in participating countries."}, {"id": 88, "subject": "General Studies", "text": "Which is a renewable source of energy?", "options": ["Coal", "Crude oil", "Solar energy", "Natural gas"], "correct": 2, "rationale": "Solar energy is naturally replenished and is therefore renewable."}, {"id": 89, "subject": "General Studies", "text": "Inflation refers to a sustained increase in:", "options": ["General price level", "Population only", "Rainfall", "Exports only"], "correct": 0, "rationale": "Inflation is a sustained rise in the general price level of goods and services."}, {"id": 90, "subject": "General Studies", "text": "Which document states the fundamental laws and principles of a country?", "options": ["Constitution", "Receipt", "Timetable", "Invoice"], "correct": 0, "rationale": "A constitution establishes the fundamental framework and principles of government."}, {"id": 91, "subject": "General Studies", "text": "Which map feature explains the symbols used on a map?", "options": ["Scale", "Key or legend", "Grid line", "Compass needle"], "correct": 1, "rationale": "The key or legend explains the symbols and colours used on a map."}, {"id": 92, "subject": "General Studies", "text": "What is entrepreneurship mainly concerned with?", "options": ["Creating and managing ventures", "Avoiding all risks", "Memorising textbooks", "Measuring rainfall only"], "correct": 0, "rationale": "Entrepreneurship involves identifying opportunities and creating or managing ventures."}, {"id": 93, "subject": "General Studies", "text": "Which computer component is used for long-term storage?", "options": ["RAM", "Hard drive or SSD", "CPU register", "Cache only"], "correct": 1, "rationale": "Hard drives and SSDs retain data when power is removed."}, {"id": 94, "subject": "General Studies", "text": "Which network device directs data packets between different networks?", "options": ["Router", "Keyboard", "Monitor", "Printer"], "correct": 0, "rationale": "A router forwards packets between networks using network addressing."}, {"id": 95, "subject": "General Studies", "text": "What is the main purpose of a spreadsheet formula?", "options": ["To perform calculations using cell data", "To draw only pictures", "To play audio", "To clean a keyboard"], "correct": 0, "rationale": "Spreadsheet formulas perform calculations based on cell values and operators."}, {"id": 96, "subject": "General Studies", "text": "Which economic activity involves buying and selling goods and services?", "options": ["Trade", "Mining only", "Fishing only", "Afforestation"], "correct": 0, "rationale": "Trade involves the exchange of goods and services."}, {"id": 97, "subject": "General Studies", "text": "Which factor is essential for responsible citizenship?", "options": ["Respect for laws and civic duties", "Ignoring public rules", "Destroying public property", "Refusing all cooperation"], "correct": 0, "rationale": "Responsible citizenship includes obeying laws and participating constructively in society."}, {"id": 98, "subject": "General Studies", "text": "Which of the following is an example of a primary economic activity?", "options": ["Farming", "Banking", "Insurance", "Software design"], "correct": 0, "rationale": "Farming directly uses natural resources and is a primary economic activity."}, {"id": 99, "subject": "General Studies", "text": "Which storage unit is larger?", "options": ["Kilobyte", "Megabyte", "Byte", "Bit"], "correct": 1, "rationale": "A megabyte is larger than a kilobyte, byte, or bit."}, {"id": 100, "subject": "Mathematics", "text": "If the ratio of boys to girls is 3:5 and there are 40 students, how many are girls?", "options": ["15", "20", "25", "30"], "correct": 2, "rationale": "The ratio has 8 parts; 40 ÷ 8 = 5 per part, so girls = 5 × 5 = 25."}];
+
+    function generate100WAECQuestions() {
+      return WAEC_NECO_QUESTION_BANK.map(q => ({
+        ...q,
+        id: q.id
+      }));
+    }
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      waecQuestions = generate100WAECQuestions();
+      try {
+        const savedParent = JSON.parse(sessionStorage.getItem('teacherNellyParentAccess') || 'null');
+        if (savedParent?.phone && savedParent?.childName) {
+          academyApi('parent-classes', savedParent).then(result => {
+            state.parentPhone = savedParent.phone;
+            state.parentChildNames = result.childNames || [savedParent.childName.toLowerCase()];
+            state.allowedClassLevels = result.classLevels || [];
+            state.selectedLevel = state.allowedClassLevels[0] || '';
+            renderLevelTabs();
+            renderCurriculumCards();
+            updateDashboardStats();
+          }).catch(() => sessionStorage.removeItem('teacherNellyParentAccess'));
+        }
+      } catch {}
+      renderPhonicsGrid();
+      renderColorsDiagram();
+      renderShapesDiagram();
+      renderLevelTabs();
+      renderCurriculumCards();
+      renderRegisteredSiblings();
+      initScienceMemoryGame();
+      initPhonicsGame();
+      updateDashboardStats();
+    });
+
+    // --- TOAST NOTIFICATION ---
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-xl text-xs font-bold text-white flex items-center gap-2 transition transform translate-y-2 opacity-0 ${type === 'success' ? 'bg-emerald-600' : 'bg-slate-900 border border-amber-400'}`;
+      toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-300' : 'fa-circle-info text-amber-400'}"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // --- SPEECH SYNTHESIS HELPER ---
+    let currentUtterance = null;
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        currentUtterance = new SpeechSynthesisUtterance(text);
+        currentUtterance.rate = 0.95;
+        window.speechSynthesis.speak(currentUtterance);
+      }
+    }
+
+    function speakChildFriendly(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast("Your browser does not support speech audio.", "info");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      const preferred = voices.find(v => /en[-_](GB|US|NG)/i.test(v.lang)) || voices.find(v => /^en/i.test(v.lang));
+      if (preferred) currentUtterance.voice = preferred;
+      currentUtterance.lang = preferred?.lang || 'en-US';
+      currentUtterance.rate = 0.82;
+      currentUtterance.pitch = 1.05;
+      window.speechSynthesis.speak(currentUtterance);
+    }
+    function stopVoiceSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // --- PHONICS A-Z BOARD LOGIC ---
+    function renderPhonicsGrid() {
+      const grid = document.getElementById('phonicsGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      ALPHABET_DATA.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `p-3 rounded-2xl border text-center transition flex flex-col items-center justify-center gap-1 ${idx === state.activeAlphabetIndex ? 'bg-amber-400 text-slate-950 border-amber-300 shadow-lg scale-105 font-black' : 'bg-white/10 hover:bg-white/20 text-white border-white/20 font-bold'}`;
+        btn.innerHTML = `<span class="text-2xl">${item.emoji}</span><span class="text-sm font-mono"><strong>${item.letter[0]}</strong> <span class="opacity-70">${item.letter[1]}</span></span>`;
+        btn.onclick = () => selectAlphabetItem(idx);
+        grid.appendChild(btn);
+      });
+      updateAlphabetSpotlight();
+    }
+
+    function selectAlphabetItem(idx) {
+      state.activeAlphabetIndex = idx;
+      renderPhonicsGrid();
+      speakAlphabetItem();
+    }
+
+    function updateAlphabetSpotlight() {
+      const item = ALPHABET_DATA[state.activeAlphabetIndex];
+      document.getElementById('spotlightEmoji').innerText = item.emoji;
+      document.getElementById('spotlightLetter').innerText = item.letter;
+      document.getElementById('spotlightWord').innerText = `Stands for: ${item.word.toUpperCase()}`;
+      document.getElementById('spotlightPhonicsSound').innerText = `Phonics Sound: "${item.phonics}"`;
+      document.getElementById('spotlightSentence').innerText = `"${item.sentence}"`;
+    }
+
+    function speakAlphabetItem() {
+      const item = ALPHABET_DATA[state.activeAlphabetIndex];
+      const capital = item.letter[0];
+      const small = item.letter[1];
+      speakChildFriendly(`Capital ${capital}. Small ${small}. ${item.phonics.replace(/^.*?\s+as in\s+/i, "")}. ${item.word}. ${item.sentence}`);
+    }
+
+    function playFullAlphabetSong() {
+      let fullText = "Teacher Nelly's alphabet tour. ";
+      ALPHABET_DATA.forEach(i => {
+        fullText += `Capital ${i.letter[0]}. Small ${i.letter[1]}. ${i.word}. ${i.phonics}. `;
+      });
+      speakChildFriendly(fullText);
+      showToast("Playing the Capital and Small Letter A-Z Audio Tour!", "success");
+    }
+
+    // --- 2D COLORS & SHAPES DIAGRAMS LOGIC ---
+    function renderColorsDiagram() {
+      const grid = document.getElementById('colorsDiagramGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      COLORS_DIAGRAM_DATA.forEach((col, idx) => {
+        const div = document.createElement('div');
+        div.className = `p-3 rounded-xl border cursor-pointer transition flex items-center gap-3 ${idx === state.activeColorIndex ? 'bg-white/20 border-amber-400 shadow-md font-bold' : 'bg-white/5 border-white/10 hover:bg-white/10'}`;
+        div.innerHTML = `<div class="w-8 h-8 rounded-full ${col.bgClass} shadow shrink-0 border border-white/30"></div><span class="text-xs text-white">${col.name}</span>`;
+        div.onclick = () => selectColorDiagram(idx);
+        grid.appendChild(div);
+      });
+      updateColorSpotlight();
+    }
+
+    function selectColorDiagram(idx) {
+      state.activeColorIndex = idx;
+      renderColorsDiagram();
+      const col = COLORS_DIAGRAM_DATA[idx];
+      speakText(`Color ${col.name}. ${col.desc}`);
+    }
+
+    function updateColorSpotlight() {
+      const col = COLORS_DIAGRAM_DATA[state.activeColorIndex];
+      document.getElementById('colorSpotlightDesc').innerText = `${col.name}: ${col.desc}`;
+    }
+
+    function renderShapesDiagram() {
+      const grid = document.getElementById('shapesDiagramGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      SHAPES_DIAGRAM_DATA.forEach((shp, idx) => {
+        const div = document.createElement('div');
+        div.className = `p-3 rounded-xl border cursor-pointer transition flex flex-col items-center text-center gap-2 ${idx === state.activeShapeIndex ? 'bg-white/20 border-indigo-400 shadow-md' : 'bg-white/5 border-white/10 hover:bg-white/10'}`;
+        div.innerHTML = `<svg width="50" height="50" viewBox="0 0 60 60">${shp.svg}</svg><span class="text-xs text-white font-bold">${shp.name}</span>`;
+        div.onclick = () => selectShapeDiagram(idx);
+        grid.appendChild(div);
+      });
+      updateShapeSpotlight();
+    }
+
+    function selectShapeDiagram(idx) {
+      state.activeShapeIndex = idx;
+      renderShapesDiagram();
+      const shp = SHAPES_DIAGRAM_DATA[idx];
+      speakText(`Shape ${shp.name}. Sides: ${shp.sides}. Angles: ${shp.angles}. Example: ${shp.example}.`);
+    }
+
+    function updateShapeSpotlight() {
+      const shp = SHAPES_DIAGRAM_DATA[state.activeShapeIndex];
+      document.getElementById('shapeSpotlightDesc').innerHTML = `<strong>${shp.name}</strong> — Sides: ${shp.sides} | Angles: ${shp.angles} | Real world: ${shp.example}`;
+    }
+
+    function speakAllDiagrams() {
+      speakText("Inspecting 2D colors and geometric shapes diagrams for preschool and primary students.");
+    }
+
+    // --- CURRICULUM & SEARCH LOGIC ---
+    const allClassLevels = ['Pre-Nursery', 'Nursery 1–2', 'Basic 1–6', 'JSS 1–3', 'SSS 1–3'];
+
+    function renderLevelTabs() {
+      const container = document.getElementById('levelTabs');
+      if (!container) return;
+      container.innerHTML = '';
+      if (!state.allowedClassLevels.length) {
+        const note = document.createElement('div');
+        note.className = 'w-full rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 font-bold';
+        note.innerHTML = '<i class="fa-solid fa-lock mr-1"></i> Register your child or use Parent Access to view the registered class curriculum.';
+        container.appendChild(note);
+        return;
+      }
+      state.allowedClassLevels.forEach(lvl => {
+        const btn = document.createElement('button');
+        btn.className = `px-4 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition shadow-sm ${state.selectedLevel === lvl ? 'bg-blue-600 text-white shadow-blue-500/30' : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'}`;
+        btn.innerText = lvl;
+        btn.onclick = () => {
+          state.selectedLevel = lvl;
+          renderLevelTabs();
+          renderCurriculumCards();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function filterSubject(sub) {
+      state.selectedSubject = sub;
+      document.querySelectorAll('[id^="subBtn-"]').forEach(b => {
+        b.className = "px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200";
+      });
+      document.getElementById(`subBtn-${sub}`).className = "px-3 py-1 rounded-lg text-xs font-bold bg-slate-900 text-white shadow-sm";
+      renderCurriculumCards();
+    }
+
+    function handleSearch() {
+      renderCurriculumCards();
+    }
+
+
+    const EXTRA_CURRICULUM_DATA = [
+      {
+        id: 1001, level:"JSS 1–3", subject:"English & Grammar", title:"Prepositions: Meaning, Types & Usage",
+        shortDesc:"Learn place, time, direction and relationship prepositions with examples and practice.",
+        isPremium:true,
+        sections:[
+          {heading:"What is a preposition?", text:"A preposition is a word that shows the relationship between a noun or pronoun and another word in a sentence. Examples include in, on, under, beside, between, during, before and after."},
+          {heading:"Prepositions of place", text:"Use in for an enclosed area, on for a surface, under for a lower position, beside for a position next to something, and between for a position separating two people or things."},
+          {heading:"Prepositions of time", text:"Use at for a precise time, on for days/dates, and in for months, years and longer periods. Example: at 7:00, on Monday, in August."},
+          {heading:"Common errors", text:"Do not say 'discuss about the matter' when discuss already takes a direct object. Say 'discuss the matter'. Learn each preposition with its natural collocation."}
+        ],
+        practice:{question:"Which sentence uses a preposition correctly?",options:["She arrived in Monday.","The book is on the table.","He went at school yesterday.","We met in 7 o'clock."],correct:1,explanation:"'On' is used with a day, while 'at' is used with a precise time."}
+      },
+      {
+        id:1002, level:"JSS 1–3", subject:"English & Grammar", title:"Adverbials: Time, Place, Manner & Reason",
+        shortDesc:"Identify and use adverbials to add information about when, where, how and why an action happens.",
+        isPremium:true,
+        sections:[
+          {heading:"Meaning", text:"An adverbial is a word, phrase or clause that gives extra information about a verb, adjective or the whole clause."},
+          {heading:"Types", text:"Adverbials can show manner (carefully), time (yesterday), place (at home), frequency (often), reason (because he was late) or purpose (to pass the examination)."},
+          {heading:"Position", text:"Many adverbials can move within a sentence, but their position can affect emphasis and clarity. Example: 'Yesterday, Ada visited the library.'"},
+          {heading:"Practice strategy", text:"Ask questions such as How? When? Where? How often? Why? to identify the adverbial."}
+        ],
+        practice:{question:"Which part is the adverbial in 'The students worked carefully during the test'?",options:["The students","worked","carefully during the test","the test"],correct:2,explanation:"'Carefully during the test' tells us how and when the students worked."}
+      },
+      {
+        id:1003, level:"JSS 1–3", subject:"English & Grammar", title:"Conjunctions: Coordinating & Subordinating",
+        shortDesc:"Connect words, phrases and clauses accurately using conjunctions.",
+        isPremium:true,
+        sections:[
+          {heading:"Coordinating conjunctions", text:"And, but, or, nor, for, so and yet join elements of equal grammatical status."},
+          {heading:"Subordinating conjunctions", text:"Because, although, while, if, unless, when and since introduce dependent clauses and show relationships such as cause, contrast, time or condition."},
+          {heading:"Choosing the right connector", text:"Use a conjunction that expresses the intended relationship. Example: 'She studied hard because she wanted to improve.'"},
+          {heading:"Punctuation", text:"When a dependent clause comes before an independent clause, a comma is commonly used to separate the clauses."}
+        ],
+        practice:{question:"Choose the best conjunction: 'I stayed indoors ___ it was raining.'",options:["because","but","or","yet"],correct:0,explanation:"Because introduces the reason for staying indoors."}
+      },
+      {
+        id:1004, level:"JSS 1–3", subject:"English & Grammar", title:"Concord: Subject–Verb Agreement",
+        shortDesc:"Master agreement between subjects and verbs, including tricky collective and indefinite subjects.",
+        isPremium:true,
+        sections:[
+          {heading:"Basic rule", text:"A singular subject generally takes a singular verb, while a plural subject takes a plural verb: 'The boy runs'; 'The boys run.'"},
+          {heading:"Indefinite pronouns", text:"Words such as everyone, everybody, each and either are normally treated as singular: 'Everyone is ready.'"},
+          {heading:"Either/or and neither/nor", text:"When subjects are joined by either...or or neither...nor, the verb generally agrees with the nearer subject in formal usage."},
+          {heading:"Collective nouns", text:"A collective noun can take a singular verb when the group acts as one unit, depending on the intended meaning and variety of English."}
+        ],
+        practice:{question:"Choose the correct sentence.",options:["Each of the students are ready.","Each of the students is ready.","Each of the students were ready.","Each of the students have ready."],correct:1,explanation:"'Each' is singular, so the verb should be 'is'."}
+      },
+      {
+        id:1005, level:"JSS 1–3", subject:"Mathematics", title:"Algebraic Expressions & Linear Equations",
+        shortDesc:"Simplify expressions, collect like terms and solve one-variable linear equations.",
+        isPremium:true,
+        sections:[
+          {heading:"Like terms", text:"Terms with the same variable part can be combined. For example, 3x + 2x = 5x."},
+          {heading:"Expanding brackets", text:"Use the distributive law: a(b + c) = ab + ac."},
+          {heading:"Solving equations", text:"Perform inverse operations on both sides. For 2x + 5 = 17, subtract 5, then divide by 2 to get x = 6."},
+          {heading:"Checking", text:"Substitute the solution back into the original equation to confirm that both sides are equal."}
+        ],
+        practice:{question:"Solve 3x + 4 = 19.",options:["3","5","7","15"],correct:1,explanation:"Subtract 4 to get 3x = 15, then divide by 3. x = 5."}
+      },
+      {
+        id:1006, level:"JSS 1–3", subject:"Mathematics", title:"Ratio, Proportion & Percentage",
+        shortDesc:"Compare quantities and solve everyday percentage problems.",
+        isPremium:true,
+        sections:[
+          {heading:"Ratio", text:"A ratio compares quantities of the same kind. Simplify ratios by dividing all terms by their common factor."},
+          {heading:"Proportion", text:"Two ratios are proportional when they represent the same relationship. Cross multiplication can help solve missing values."},
+          {heading:"Percentage", text:"Percentage means 'per hundred'. Percentage change is calculated from the relevant original value."},
+          {heading:"Applications", text:"Use percentages for profit and loss, discounts, simple interest and interpreting data."}
+        ],
+        practice:{question:"A shirt costs ₦8,000 and is discounted by 10%. What is the discount?",options:["₦80","₦400","₦800","₦1,800"],correct:2,explanation:"10% of ₦8,000 is ₦800."}
+      },
+      {
+        id:1007, level:"JSS 1–3", subject:"Sciences", title:"Cells: Structure & Functions",
+        shortDesc:"Understand the basic parts of plant and animal cells and their functions.",
+        isPremium:true,
+        sections:[
+          {heading:"Cell as a unit", text:"The cell is the basic structural and functional unit of living organisms."},
+          {heading:"Animal cell", text:"Important structures include the cell membrane, cytoplasm, nucleus and mitochondria."},
+          {heading:"Plant cell", text:"Plant cells also have structures such as a cellulose cell wall, chloroplasts and a large permanent vacuole."},
+          {heading:"Comparing cells", text:"Plant and animal cells share several structures but differ in features linked to photosynthesis and support."}
+        ],
+        practice:{question:"Which structure controls many activities of the cell?",options:["Cell wall","Nucleus","Vacuole","Chloroplast"],correct:1,explanation:"The nucleus contains genetic material and helps control cell activities."}
+      },
+      {
+        id:1008, level:"JSS 1–3", subject:"Sciences", title:"Matter: States, Changes & Particle Model",
+        shortDesc:"Explain solids, liquids and gases and the changes between their states.",
+        isPremium:true,
+        sections:[
+          {heading:"States of matter", text:"Solids have a fixed shape and volume, liquids have a fixed volume but take the shape of their container, and gases have neither fixed shape nor fixed volume."},
+          {heading:"Particle model", text:"Particles are closely packed and vibrate in solids, move more freely in liquids, and are far apart and move rapidly in gases."},
+          {heading:"Changes of state", text:"Melting, freezing, evaporation, boiling, condensation and sublimation describe changes between states."},
+          {heading:"Heating and cooling", text:"Changes of state involve energy transfer and do not necessarily create a new substance."}
+        ],
+        practice:{question:"Which change turns a liquid into a gas at the surface?",options:["Freezing","Condensation","Evaporation","Melting"],correct:2,explanation:"Evaporation is the change from liquid to gas at the surface."}
+      },
+      {
+        id:1009, level:"SSS 1–3", subject:"English & Grammar", title:"Advanced Concord & Error Correction",
+        shortDesc:"Apply subject–verb agreement, pronoun agreement and common examination error patterns.",
+        isPremium:true,
+        sections:[
+          {heading:"Agreement beyond the basics", text:"Check the true grammatical subject rather than a nearby noun: 'The box of books is heavy.'"},
+          {heading:"Quantifiers", text:"Expressions such as a number of and the number of take different verb patterns: 'A number of students are...' but 'The number of students is...'"},
+          {heading:"Pronoun agreement", text:"Pronouns should agree appropriately with their antecedents in number and person."},
+          {heading:"Exam technique", text:"Read the whole sentence, identify the subject, ignore intervening phrases, then test each option for grammatical agreement."}
+        ],
+        practice:{question:"Choose the correct option: 'The number of applicants ___ increased.'",options:["have","are","has","were"],correct:2,explanation:"'The number' is singular, so it takes 'has'."}
+      },
+      {
+        id:1010, level:"SSS 1–3", subject:"Mathematics", title:"Quadratic Equations & Graphs",
+        shortDesc:"Factorise simple quadratics, solve equations and connect roots with graphs.",
+        isPremium:true,
+        sections:[
+          {heading:"Quadratic form", text:"A quadratic equation can be written as ax² + bx + c = 0, where a is not zero."},
+          {heading:"Factorisation", text:"Look for two factors whose product is ac and whose sum is b when the equation is suitable for factorisation."},
+          {heading:"Quadratic formula", text:"For ax² + bx + c = 0, x = (-b ± √(b² - 4ac))/(2a)."},
+          {heading:"Graph connection", text:"The roots of a quadratic are the x-values where its graph crosses or touches the x-axis."}
+        ],
+        practice:{question:"Which are the roots of x² - 5x + 6 = 0?",options:["1 and 6","2 and 3","-2 and -3","3 and 5"],correct:1,explanation:"x² - 5x + 6 = (x - 2)(x - 3), so x = 2 or 3."}
+      },
+      {
+        id:1011, level:"SSS 1–3", subject:"Sciences", title:"Chemical Reactions & Equations",
+        shortDesc:"Recognise reactions, write balanced equations and explain conservation of mass.",
+        isPremium:true,
+        sections:[
+          {heading:"What is a reaction?", text:"A chemical reaction rearranges atoms to form new substances with different properties."},
+          {heading:"Signs of reaction", text:"Possible observations include colour change, gas formation, temperature change or formation of a precipitate."},
+          {heading:"Balancing equations", text:"Balance equations by changing coefficients, not the chemical formula subscripts, so the number of each type of atom is equal on both sides."},
+          {heading:"Conservation of mass", text:"In a closed system, atoms are rearranged rather than created or destroyed, so total mass is conserved."}
+        ],
+        practice:{question:"Which change is necessary when balancing a chemical equation?",options:["Change element symbols","Change subscripts only","Change coefficients","Remove products"],correct:2,explanation:"Coefficients change the number of particles without changing the identity of the substances."}
+      },
+      {
+        id:1012, level:"SSS 1–3", subject:"ICT & Tech", title:"Computer Networks, Internet & Cyber Safety",
+        shortDesc:"Understand LAN/WAN, common network devices, internet services and safe digital behaviour.",
+        isPremium:true,
+        sections:[
+          {heading:"Networks", text:"A computer network connects devices so they can communicate and share resources. LAN covers a limited area; WAN covers a wider geographical area."},
+          {heading:"Devices", text:"Switches connect devices within a network; routers direct traffic between networks."},
+          {heading:"Internet services", text:"Common services include the web, email, cloud storage and online communication."},
+          {heading:"Cyber safety", text:"Use strong unique passwords, enable multi-factor authentication where available, avoid suspicious links and protect personal information."}
+        ],
+        practice:{question:"Which device normally directs traffic between different networks?",options:["Monitor","Router","Keyboard","Printer"],correct:1,explanation:"A router forwards packets between different networks."}
+      }
+    ];
+
+    CURRICULUM_DATA.push(...EXTRA_CURRICULUM_DATA);
+
+    function renderCurriculumCards() {
+      const container = document.getElementById('curriculumContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const query = (document.getElementById('searchInput').value || '').toLowerCase();
+
+      if (!state.allowedClassLevels.length) {
+        container.innerHTML = `<div class="col-span-full py-12 text-center bg-amber-50 border border-amber-200 rounded-2xl text-amber-900 text-xs font-bold px-5">Register your child to unlock the curriculum for the class you selected. Other class curricula are not available in parent mode.</div>`;
+        return;
+      }
+
+      const filtered = CURRICULUM_DATA.filter(item => {
+        const matchesAllowedClass = state.allowedClassLevels.includes(item.level);
+        const matchesLevel = item.level === state.selectedLevel;
+        const matchesSubject = state.selectedSubject === 'All' || item.subject === state.selectedSubject;
+        const matchesQuery = item.title.toLowerCase().includes(query) || item.shortDesc.toLowerCase().includes(query) || item.subject.toLowerCase().includes(query);
+        return matchesAllowedClass && matchesLevel && matchesSubject && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-xs">No matching curriculum topics found. Try searching for "Preposition", "Concord", or "Phonics".</div>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const isLocked = item.isPremium && !state.isVIP;
+        const card = document.createElement('div');
+        card.className = `bg-white rounded-2xl border p-5 shadow-sm transition flex flex-col justify-between relative overflow-hidden ${isLocked ? 'border-amber-300 bg-amber-50/20' : 'border-slate-200 hover:border-blue-500'}`;
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase ${item.isPremium ? 'bg-amber-100 text-amber-900' : 'bg-blue-100 text-blue-800'}">${item.level} • ${item.subject}</span>
+              ${isLocked ? '<span class="text-amber-600 text-xs font-extrabold flex items-center gap-1"><i class="fa-solid fa-lock"></i> VIP Locked</span>' : '<span class="text-emerald-600 text-xs font-extrabold flex items-center gap-1"><i class="fa-solid fa-lock-open"></i> Free Access</span>'}
+            </div>
+            <h3 class="text-base font-bold text-slate-900 mb-2 leading-snug">${item.title}</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">${item.shortDesc}</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-400">Teacher Nelly Notes</span>
+            <button onclick="openLessonModal(${item.id})" class="${isLocked ? 'bg-amber-500 hover:bg-amber-600 text-slate-950' : 'bg-slate-900 hover:bg-slate-800 text-white'} text-xs font-extrabold px-4 py-2 rounded-xl transition shadow">
+              ${isLocked ? 'Unlock VIP Lesson' : 'Open Lesson Notes'}
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- LESSON MODAL LOGIC ---
+    function openLessonModal(id) {
+      const lesson = CURRICULUM_DATA.find(i => i.id === id);
+      if (!lesson) return;
+      if (!state.allowedClassLevels.includes(lesson.level)) {
+        showToast("This lesson is outside the class registered by the parent account.", "info");
+        return;
+      }
+      if (lesson.isPremium && !state.isVIP) {
+        openCheckoutModal('Premium VIP Access (Lesson Locked)');
+        return;
+      }
+      state.activeLesson = lesson;
+
+      document.getElementById('lessonModalLevel').innerText = lesson.level;
+      document.getElementById('lessonModalSubject').innerText = lesson.subject;
+      document.getElementById('lessonModalBadge').innerHTML = lesson.isPremium ? '<i class="fa-solid fa-crown text-[10px]"></i> VIP Premium Lesson' : '<i class="fa-solid fa-lock-open text-[10px]"></i> Free Access Lesson';
+      document.getElementById('lessonModalTitle').innerText = lesson.title;
+      document.getElementById('lessonModalShortDesc').innerText = lesson.shortDesc;
+
+      const bodyDiv = document.getElementById('lessonModalBody');
+      bodyDiv.innerHTML = '';
+      lesson.sections.forEach(sec => {
+        const sBlock = document.createElement('div');
+        sBlock.className = 'space-y-1';
+        sBlock.innerHTML = `<h4 class="font-bold text-slate-900 text-sm">${sec.heading}</h4><p class="text-slate-600 whitespace-pre-line leading-relaxed">${sec.text}</p>`;
+        bodyDiv.appendChild(sBlock);
+      });
+
+      // Practice question
+      document.getElementById('lessonPracticeQuestion').innerText = lesson.practice.question;
+      const optContainer = document.getElementById('lessonPracticeOptions');
+      optContainer.innerHTML = '';
+      lesson.practice.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'w-full text-left px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition flex items-center justify-between';
+        btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span>`;
+        btn.onclick = () => checkLessonPractice(idx, lesson.practice.correct, lesson.practice.explanation);
+        optContainer.appendChild(btn);
+      });
+      document.getElementById('lessonPracticeFeedback').classList.add('hidden');
+
+      document.getElementById('lessonModal').classList.remove('hidden');
+    }
+
+    function closeLessonModal() {
+      document.getElementById('lessonModal').classList.add('hidden');
+      stopVoiceSpeech();
+    }
+
+    function speakCurrentLessonContent() {
+      if (!state.activeLesson) return;
+      let textToRead = `${state.activeLesson.title}. `;
+      state.activeLesson.sections.forEach(s => {
+        textToRead += `${s.heading}. ${s.text}. `;
+      });
+      speakText(textToRead);
+      showToast("Reading lesson notes aloud...", "success");
+    }
+
+    function checkLessonPractice(selectedIdx, correctIdx, explanation) {
+      const fb = document.getElementById('lessonPracticeFeedback');
+      fb.classList.remove('hidden');
+      if (selectedIdx === correctIdx) {
+        fb.className = "p-3 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300";
+        fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Correct! ${explanation}`;
+        speakText("Correct! Well done.");
+      } else {
+        fb.className = "p-3 rounded-xl text-xs font-bold bg-red-100 text-red-900 border border-red-300";
+        fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Incorrect. ${explanation}`;
+        speakText("Incorrect. Try again.");
+      }
+    }
+
+    // --- WAEC 100-QUESTION EXAM LOGIC ---
+    function startWAECExam() {
+      document.getElementById('examStartScreen').classList.add('hidden');
+      document.getElementById('examActiveUI').classList.remove('hidden');
+      currentExamIndex = 0;
+      examAnswers = {};
+      examTimeRemaining = 7200;
+      examSubmitted = false;
+
+      if (examTimerInterval) clearInterval(examTimerInterval);
+      examTimerInterval = setInterval(() => {
+        examTimeRemaining--;
+        let mins = Math.floor(examTimeRemaining / 60);
+        let secs = examTimeRemaining % 60;
+        document.getElementById('examTimerDisplay').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        if (examTimeRemaining <= 0) {
+          clearInterval(examTimerInterval);
+          submitWAECExamFinal();
+        }
+      }, 1000);
+
+      renderCurrentExamQuestion();
+    }
+
+    function renderCurrentExamQuestion() {
+      const q = waecQuestions[currentExamIndex];
+      document.getElementById('currentQuestionSubjectTag').innerText = `Subject: ${q.subject}`;
+      document.getElementById('questionNumberBadge').innerText = `Question ${currentExamIndex + 1} of 100`;
+      document.getElementById('examQuestionText').innerText = q.text;
+
+      let answeredCount = Object.keys(examAnswers).length;
+      document.getElementById('examProgressCount').innerText = `${answeredCount} / 100`;
+      let pct = Math.round((answeredCount / 100) * 100);
+      document.getElementById('examOverallPercentage').innerText = `${pct}% Completed`;
+      document.getElementById('examProgressBar').style.width = `${pct}%`;
+
+      const optContainer = document.getElementById('examOptionsContainer');
+      optContainer.innerHTML = '';
+      q.options.forEach((opt, idx) => {
+        let isSelected = examAnswers[currentExamIndex] === idx;
+        const btn = document.createElement('button');
+        btn.className = `w-full text-left px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition flex items-center justify-between ${isSelected ? 'bg-amber-400 text-slate-950 border-amber-300 shadow-md' : 'bg-slate-900 text-slate-200 border-slate-700 hover:bg-slate-700'}`;
+        btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span> ${isSelected ? '<i class="fa-solid fa-circle-check"></i>' : ''}`;
+        btn.onclick = () => {
+          examAnswers[currentExamIndex] = idx;
+          renderCurrentExamQuestion();
+        };
+        optContainer.appendChild(btn);
+      });
+
+      document.getElementById('rationaleBox').classList.add('hidden');
+      document.getElementById('rationaleText').innerText = q.rationale;
+    }
+
+    function toggleRationaleExplanation() {
+      const box = document.getElementById('rationaleBox');
+      box.classList.toggle('hidden');
+    }
+
+    function navigateExam(direction) {
+      currentExamIndex += direction;
+      if (currentExamIndex < 0) currentExamIndex = 0;
+      if (currentExamIndex >= waecQuestions.length) currentExamIndex = waecQuestions.length - 1;
+      renderCurrentExamQuestion();
+    }
+
+    function submitExamEarlyConfirm() {
+      if (confirm("Are you sure you want to submit your WAEC practice exam now?")) {
+        submitWAECExamFinal();
+      }
+    }
+
+    function submitWAECExamFinal() {
+      if (examSubmitted) return;
+      examSubmitted = true;
+      if (examTimerInterval) clearInterval(examTimerInterval);
+
+      let score = 0;
+      waecQuestions.forEach((q, idx) => {
+        if (examAnswers[idx] === q.correct) score++;
+      });
+
+      document.getElementById('examActiveUI').classList.add('hidden');
+      document.getElementById('examResultsScreen').classList.remove('hidden');
+      document.getElementById('finalScoreDisplay').innerText = `${score} / 100`;
+      document.getElementById('finalPercentageDisplay').innerText = `${score}%`;
+      showToast(`WAEC Practice Exam Submitted! Score: ${score}/100`, "success");
+    }
+
+    function resetWAECExam() {
+      document.getElementById('examResultsScreen').classList.add('hidden');
+      document.getElementById('examStartScreen').classList.remove('hidden');
+    }
+
+    // --- GAMES ARENA LOGIC ---
+    function switchGame(gameKey) {
+      document.getElementById('gameMathContainer').classList.add('hidden');
+      document.getElementById('gamePhonicsContainer').classList.add('hidden');
+      document.getElementById('gameMemoryContainer').classList.add('hidden');
+      document.getElementById('gameScrambleContainer').classList.add('hidden');
+
+      document.getElementById('btnGameMath').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+      document.getElementById('btnGamePhonics').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+      document.getElementById('btnGameMemory').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+      document.getElementById('btnGameScramble').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+
+      if (gameKey === 'math') {
+        document.getElementById('gameMathContainer').classList.remove('hidden');
+        document.getElementById('btnGameMath').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-purple-600 text-white shadow-sm transition";
+      } else if (gameKey === 'phonics') {
+        document.getElementById('gamePhonicsContainer').classList.remove('hidden');
+        document.getElementById('btnGamePhonics').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-blue-600 text-white shadow-sm transition";
+        initPhonicsGame();
+      } else if (gameKey === 'memory') {
+        document.getElementById('gameMemoryContainer').classList.remove('hidden');
+        document.getElementById('btnGameMemory').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-emerald-600 text-white shadow-sm transition";
+        initScienceMemoryGame();
+      } else if (gameKey === 'scramble') {
+        document.getElementById('gameScrambleContainer').classList.remove('hidden');
+        document.getElementById('btnGameScramble').className = "px-3.5 py-2 rounded-xl font-bold text-xs bg-amber-500 text-slate-950 shadow-sm transition";
+        initWordScramble();
+      }
+    }
+
+    // Math Game Logic
+    let mathScore = 0;
+    let mathTimer = 30;
+    let mathInterval = null;
+    let currentMathAns = 0;
+
+    function startMathGame() {
+      mathScore = 0;
+      mathTimer = 30;
+      document.getElementById('mathGameScore').innerText = mathScore;
+      document.getElementById('mathGameStart').classList.add('hidden');
+      document.getElementById('mathGamePlay').classList.remove('hidden');
+      generateMathProblem();
+
+      if (mathInterval) clearInterval(mathInterval);
+      mathInterval = setInterval(() => {
+        mathTimer--;
+        document.getElementById('mathGameTimer').innerText = `${mathTimer}s`;
+        if (mathTimer <= 0) {
+          clearInterval(mathInterval);
+          document.getElementById('mathGameStart').classList.remove('hidden');
+          document.getElementById('mathGamePlay').classList.add('hidden');
+          showToast(`Math Speed Blast finished! Final Score: ${mathScore}`, "success");
+        }
+      }, 1000);
+    }
+
+    function generateMathProblem() {
+      const ops = ['+', '-', 'x'];
+      const op = ops[Math.floor(Math.random() * ops.length)];
+      let n1 = Math.floor(Math.random() * 12) + 1;
+      let n2 = Math.floor(Math.random() * 12) + 1;
+      if (op === '-') { if (n1 < n2) { let temp = n1; n1 = n2; n2 = temp; } }
+
+      if (op === '+') currentMathAns = n1 + n2;
+      if (op === '-') currentMathAns = n1 - n2;
+      if (op === 'x') currentMathAns = n1 * n2;
+
+      document.getElementById('mathQuestionDisplay').innerText = `${n1} ${op} ${n2} = ?`;
+
+      let options = [currentMathAns];
+      while (options.length < 4) {
+        let wrong = currentMathAns + (Math.floor(Math.random() * 6) - 3);
+        if (wrong !== currentMathAns && !options.includes(wrong) && wrong >= 0) options.push(wrong);
+      }
+      options.sort(() => Math.random() - 0.5);
+
+      const grid = document.getElementById('mathOptionsGrid');
+      grid.innerHTML = '';
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "py-3 bg-purple-700 hover:bg-purple-600 text-white font-black text-xl rounded-xl shadow transition";
+        btn.innerText = opt;
+        btn.onclick = () => {
+          if (opt === currentMathAns) {
+            mathScore += 10;
+            document.getElementById('mathGameScore').innerText = mathScore;
+            showToast("Correct! +10 pts", "success");
+          }
+          generateMathProblem();
+        };
+        grid.appendChild(btn);
+      });
+    }
+
+    // Phonics Match Game Logic (Fully Fixed & Robust)
+    let phonicsGameScore = 0;
+    let currentPhonicsTarget = null;
+
+    function initPhonicsGame() {
+      phonicsGameScore = 0;
+      document.getElementById('phonicsGameScore').innerText = phonicsGameScore;
+      nextPhonicsRound();
+    }
+
+    function nextPhonicsRound() {
+      // Pick 4 random distinct alphabet items
+      let shuffled = [...ALPHABET_DATA].sort(() => Math.random() - 0.5);
+      let choices = shuffled.slice(0, 4);
+      currentPhonicsTarget = choices[Math.floor(Math.random() * choices.length)];
+
+      document.getElementById('phonicsGamePromptLetter').innerText = currentPhonicsTarget.letter;
+      document.getElementById('phonicsGamePromptDesc').innerText = `Find and tap the picture card for: "${currentPhonicsTarget.word.toUpperCase()}" (${currentPhonicsTarget.phonics})`;
+
+      const grid = document.getElementById('phonicsGameChoices');
+      grid.innerHTML = '';
+      choices.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = "bg-white/10 hover:bg-white/20 border border-white/20 p-4 rounded-2xl flex flex-col items-center justify-center gap-2 transition transform hover:scale-105 shadow";
+        btn.innerHTML = `<span class="text-4xl">${item.emoji}</span><span class="text-xs font-bold text-amber-300 font-mono">${item.word}</span>`;
+        btn.onclick = () => {
+          if (item.letter === currentPhonicsTarget.letter) {
+            phonicsGameScore += 15;
+            document.getElementById('phonicsGameScore').innerText = phonicsGameScore;
+            document.getElementById('phonicsGameFeedback').innerText = "Correct! Great job matching!";
+            speakText("Correct! Well done.");
+            setTimeout(() => {
+              document.getElementById('phonicsGameFeedback').innerText = "";
+              nextPhonicsRound();
+            }, 1200);
+          } else {
+            document.getElementById('phonicsGameFeedback').innerText = "Incorrect! Try again.";
+            speakText("Incorrect. Try another card.");
+          }
+        };
+        grid.appendChild(btn);
+      });
+    }
+
+    function speakPhonicsGamePrompt() {
+      if (currentPhonicsTarget) {
+        speakText(`Find ${currentPhonicsTarget.word}. ${currentPhonicsTarget.phonics}`);
+      }
+    }
+
+
+    // Word Scramble Game
+    const SCRAMBLE_WORDS = [
+      {word:"APPLE", emoji:"🍎"}, {word:"BALL", emoji:"⚽"}, {word:"CAT", emoji:"🐱"},
+      {word:"DOG", emoji:"🐶"}, {word:"FISH", emoji:"🐟"}, {word:"HOUSE", emoji:"🏠"},
+      {word:"SCHOOL", emoji:"🏫"}, {word:"PENCIL", emoji:"✏️"}, {word:"ORANGE", emoji:"🍊"},
+      {word:"BANANA", emoji:"🍌"}, {word:"PLANET", emoji:"🪐"}, {word:"RIVER", emoji:"🌊"}
+    ];
+    let scrambleCurrent = null, scrambleSelected = [], scrambleScore = 0;
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+    function initWordScramble() {
+      scrambleCurrent = SCRAMBLE_WORDS[Math.floor(Math.random()*SCRAMBLE_WORDS.length)];
+      scrambleSelected = [];
+      document.getElementById('scrambleEmoji').innerText = scrambleCurrent.emoji;
+      document.getElementById('scrambleScore').innerText = scrambleScore;
+      document.getElementById('scrambleFeedback').innerText = '';
+      const letters = shuffleArray(scrambleCurrent.word.split('').map((ch, i)=>({ch, id:i})));
+      const grid = document.getElementById('scrambleLetters');
+      grid.innerHTML='';
+      letters.forEach(item=>{
+        const b=document.createElement('button');
+        b.className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 hover:bg-amber-400 hover:text-slate-950 font-black text-xl transition";
+        b.innerText=item.ch;
+        b.dataset.id=item.id;
+        b.onclick=()=>{
+          if(scrambleSelected.some(x=>x.id===item.id)) return;
+          scrambleSelected.push(item);
+          b.classList.add('opacity-30','pointer-events-none');
+          renderScrambleSlots();
+          if(scrambleSelected.length===scrambleCurrent.word.length){
+            const answer=scrambleSelected.map(x=>x.ch).join('');
+            const feedback=document.getElementById('scrambleFeedback');
+            if(answer===scrambleCurrent.word){
+              scrambleScore+=10;
+              feedback.innerText="Correct! Great word building!";
+              speakChildFriendly("Correct! Well done!");
+              setTimeout(initWordScramble,900);
+            } else {
+              feedback.innerText="Not quite. Try again or use Undo.";
+              speakChildFriendly("Not quite. Try again.");
+            }
+          }
+        };
+        grid.appendChild(b);
+      });
+      renderScrambleSlots();
+    }
+    function renderScrambleSlots(){
+      const slots=document.getElementById('scrambleWordSlots');
+      slots.innerHTML='';
+      const target=scrambleCurrent?.word||'';
+      for(let i=0;i<target.length;i++){
+        const s=document.createElement('span');
+        s.className="w-12 h-12 rounded-xl bg-white/10 border-2 border-dashed border-amber-300 flex items-center justify-center font-black text-xl";
+        s.innerText=scrambleSelected[i]?.ch||'';
+        slots.appendChild(s);
+      }
+    }
+    function undoScrambleLetter(){
+      const removed=scrambleSelected.pop();
+      if(!removed) return;
+      const btn=[...document.querySelectorAll('#scrambleLetters button')].find(b=>b.dataset.id==removed.id);
+      if(btn) btn.classList.remove('opacity-30','pointer-events-none');
+      document.getElementById('scrambleFeedback').innerText='';
+      renderScrambleSlots();
+    }
+
+    // Science Memory Match Game Logic (Fully Fixed Matching Grid)
+    const scienceMemoryPairs = [
+      { id: 1, name: "Atom", icon: "⚛️" },
+      { id: 2, name: "DNA", icon: "🧬" },
+      { id: 3, name: "Plant", icon: "🌱" },
+      { id: 4, name: "Magnet", icon: "🧲" },
+      { id: 5, name: "Microscope", icon: "🔬" },
+      { id: 6, name: "Planet", icon: "🪐" }
+    ];
+
+    let memoryCards = [];
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+    let memoryFlips = 0;
+    let memoryMatchedPairs = 0;
+
+    function initScienceMemoryGame() {
+      memoryFlips = 0;
+      memoryMatchedPairs = 0;
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+
+      document.getElementById('memoryFlipsCount').innerText = memoryFlips;
+      document.getElementById('memoryPairsCount').innerText = `${memoryMatchedPairs} / 6`;
+
+      // Duplicate for pairs
+      let deck = [...scienceMemoryPairs, ...scienceMemoryPairs]
+        .sort(() => Math.random() - 0.5)
+        .map((item, index) => ({
+          uniqueId: index,
+          name: item.name,
+          icon: item.icon,
+          isFlipped: false,
+          isMatched: false
+        }));
+
+      memoryCards = deck;
+      renderMemoryGrid();
+    }
+
+    function renderMemoryGrid() {
+      const grid = document.getElementById('memoryGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      memoryCards.forEach((card, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `h-20 rounded-2xl border text-2xl font-bold transition flex items-center justify-center shadow ${card.isFlipped || card.isMatched ? 'bg-emerald-700 text-white border-emerald-500 font-black' : 'bg-white/10 hover:bg-white/20 text-emerald-400 border-white/20'}`;
+        btn.innerHTML = card.isFlipped || card.isMatched ? `<span>${card.icon}</span>` : `<span class="text-xs text-emerald-300 font-mono">#${idx + 1}</span>`;
+        btn.onclick = () => flipMemoryCard(idx);
+        grid.appendChild(btn);
+      });
+    }
+
+    function flipMemoryCard(idx) {
+      if (lockBoard) return;
+      let clicked = memoryCards[idx];
+      if (clicked.isFlipped || clicked.isMatched) return;
+
+      clicked.isFlipped = true;
+      memoryFlips++;
+      document.getElementById('memoryFlipsCount').innerText = memoryFlips;
+      renderMemoryGrid();
+
+      if (!firstCard) {
+        firstCard = { index: idx, card: clicked };
+      } else {
+        secondCard = { index: idx, card: clicked };
+        checkForMemoryMatch();
+      }
+    }
+
+    function checkForMemoryMatch() {
+      let isMatch = firstCard.card.name === secondCard.card.name;
+
+      if (isMatch) {
+        memoryCards[firstCard.index].isMatched = true;
+        memoryCards[secondCard.index].isMatched = true;
+        memoryMatchedPairs++;
+        document.getElementById('memoryPairsCount').innerText = `${memoryMatchedPairs} / 6`;
+        resetMemoryTurn();
+
+        if (memoryMatchedPairs === 6) {
+          showToast(`Fantastic! Science Memory completed in ${memoryFlips} flips!`, "success");
+          speakText("Fantastic! You matched all science memory pairs successfully!");
+        }
+      } else {
+        lockBoard = true;
+        setTimeout(() => {
+          memoryCards[firstCard.index].isFlipped = false;
+          memoryCards[secondCard.index].isFlipped = false;
+          resetMemoryTurn();
+          renderMemoryGrid();
+        }, 1000);
+      }
+    }
+
+    function resetMemoryTurn() {
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+    }
+
+    // --- PARENT CLASS ACCESS ---
+    function openParentAccessModal() {
+      document.getElementById('parentAccessModal').classList.remove('hidden');
+    }
+    function closeParentAccessModal() {
+      document.getElementById('parentAccessModal').classList.add('hidden');
+    }
+    async function handleParentAccess(event) {
+      event.preventDefault();
+      const phone = document.getElementById('parentAccessPhone').value.trim();
+      const childName = document.getElementById('parentAccessChildName').value.trim();
+      if (!phone || !childName) return;
+      try {
+        const result = await academyApi('parent-classes', { phone, childName });
+        state.parentPhone = phone;
+        state.parentChildNames = [childName.toLowerCase()];
+        state.allowedClassLevels = result.classLevels || [];
+        state.selectedLevel = state.allowedClassLevels[0] || '';
+        sessionStorage.setItem('teacherNellyParentAccess', JSON.stringify({ phone, childName }));
+        closeParentAccessModal();
+        renderLevelTabs();
+        renderCurriculumCards();
+        showToast(`Parent access active: ${state.allowedClassLevels.join(', ')}`, 'success');
+        document.getElementById('curriculum').scrollIntoView({ behavior: 'smooth' });
+      } catch (e) {
+        showToast(e.message || 'Parent access could not be verified.', 'info');
+      }
+    }
+
+    // --- PARENT HUB & REGISTRATION ---
+    function openParentModal() {
+      document.getElementById('parentModal').classList.remove('hidden');
+    }
+    function closeParentModal() {
+      document.getElementById('parentModal').classList.add('hidden');
+    }
+
+    async function handleRegisterChild(event) {
+      event.preventDefault();
+      const name = document.getElementById('childNameInput').value.trim();
+      const phone = document.getElementById('childParentPhoneInput').value.trim();
+      const classLevel = document.getElementById('childClassInput').value;
+      if (!name || !phone || !classLevel) return;
+      try {
+        const result = await academyApi("register-student", { name, parentPhone: phone, classLevel });
+        state.registeredStudents.unshift(result.student);
+        state.parentPhone = phone;
+        if (!state.parentChildNames.includes(name.toLowerCase())) state.parentChildNames.push(name.toLowerCase());
+        if (!state.allowedClassLevels.includes(classLevel)) state.allowedClassLevels.push(classLevel);
+        state.selectedLevel = classLevel;
+        sessionStorage.setItem('teacherNellyParentAccess', JSON.stringify({ phone, childName: name }));
+        renderLevelTabs();
+        renderCurriculumCards();
+        closeParentModal();
+        updateDashboardStats();
+        showToast(`Student ${name} successfully registered for free!`, "success");
+        event.target.reset();
+      } catch (e) {
+        showToast(e.message || "Registration failed.", "info");
+      }
+    }
+
+    // Student records are intentionally never rendered on the public academy page.
+    // Only the private admin dashboard can display registration details.
+    function renderRegisteredSiblings() { return; }
+
+
+    async function handleParentInquiry(event) {
+      event.preventDefault();
+      const name = document.getElementById('parentName').value.trim();
+      const phone = document.getElementById('parentPhone').value.trim();
+      const classLevel = document.getElementById('parentClassSelect').value;
+      const category = document.getElementById('inquiryCategory').value;
+      const message = document.getElementById('parentMessage').value.trim();
+      try {
+        await academyApi("submit-inquiry", { parentName:name, parentPhone:phone, classLevel, category, message });
+        showToast("Parent inquiry submitted successfully to Teacher Nelly!", "success");
+        event.target.reset();
+      } catch (e) {
+        showToast(e.message || "Could not submit inquiry.", "info");
+      }
+    }
+
+    // --- CHECKOUT & UNLOCK CODES ---
+    function openCheckoutModal(planTitle = 'Termly Plan (₦15,000)') {
+      state.selectedPlan = planTitle;
+      document.getElementById('checkoutPlanTitle').innerText = planTitle;
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    async function submitPaymentForVerification() {
+      const name = document.getElementById('depositorName').value.trim();
+      const refId = document.getElementById('paymentReferenceId').value.trim();
+      const phone = document.getElementById('depositorPhone').value.trim();
+      if (!name || !refId || !phone) {
+        showToast("Please fill in all payment verification details.", "info");
+        return;
+      }
+      try {
+        await academyApi("submit-payment", { depositorName:name, referenceId:refId, phone, plan:state.selectedPlan });
+        closeCheckoutModal();
+        showToast("Payment submitted for verification. Teacher Nelly will issue a VIP code after confirming the transfer.", "success");
+      } catch (e) {
+        showToast(e.message, "info");
+      }
+    }
+
+    function openUnlockModal() { document.getElementById('unlockModal').classList.remove('hidden'); }
+    function closeUnlockModal() { document.getElementById('unlockModal').classList.add('hidden'); }
+
+    async function verifyUnlockCode() {
+      const code = document.getElementById('unlockCodeInput').value.trim().toUpperCase();
+      if (!code) return;
+      try {
+        const result = await academyApi("verify-code", { code });
+        state.isVIP = true;
+        state.vipExpiresAt = result.expiresAt;
+        closeUnlockModal();
+        updateDashboardStats();
+        renderCurriculumCards();
+        showToast(`VIP code verified. ${result.plan || "Premium access"} is now active.`, "success");
+      } catch (e) {
+        showToast(e.message || "Invalid or expired VIP code.", "info");
+      }
+    }
+
+    function updateDashboardStats() {
+      const count = document.getElementById('registeredKidsCount');
+      if (count) count.innerText = state.allowedClassLevels.length ? `${state.allowedClassLevels.length} Class${state.allowedClassLevels.length > 1 ? 'es' : ''} Active` : 'Register a Child';
+      const visibility = document.getElementById('classVisibilityText');
+      if (visibility) visibility.innerText = state.allowedClassLevels.length ? state.allowedClassLevels.join(' • ') : 'Registration Required';
+      const badge = document.getElementById('vipStatusBadge');
+      if (badge) badge.innerText = state.isVIP ? "VIP Active Pass" : "Free Mode";
+      const premium = document.getElementById('premiumStatusText');
+      if (premium) premium.innerText = state.isVIP ? "Full VIP Unlocked" : "Standard Account";
+    }
+
+    function closeAd(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+    function resetClassFilter() {
+      state.selectedLevel = state.allowedClassLevels[0] || '';
+      state.selectedSubject = 'All';
+      renderLevelTabs();
+      renderCurriculumCards();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
